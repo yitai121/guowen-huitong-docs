@@ -3,43 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>国文汇通 - 数字资产文化版权平台</title>
+    <title>国文汇通 - 让中华文化数字化、资产化、全球化</title>
+    <meta name="description" content="国文汇通以文化为魂·以科技为器·以金融为力，提供数字藏品交易、文化产权交易、数字资产服务，让中华文化数字化、资产化、全球化">
     <style>
+        :root {
+            --primary: #165DFF;
+            --secondary: #4080FF;
+            --dark: #1D2129;
+            --light: #F2F3F5;
+            --gray: #86909C;
+            --light-gray: #C9CDD4;
+            --white: #FFFFFF;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 10px 40px rgba(22, 93, 255, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
 
-        :root {
-            --primary-purple: #6366f1;
-            --primary-blue: #3b82f6;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
-            --border-color: #e2e8f0;
-            --gradient-primary: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-blue) 100%);
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
+        /* 加载动画 */
         .loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background: #fff;
+            background: var(--white);
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
         .loader.hidden {
@@ -50,8 +59,8 @@
         .loader-circle {
             width: 48px;
             height: 48px;
-            border: 3px solid var(--border-color);
-            border-top-color: var(--primary-purple);
+            border: 3px solid var(--light);
+            border-top-color: var(--primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -60,47 +69,50 @@
             to { transform: rotate(360deg); }
         }
 
+        /* 导航栏 */
         nav {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
+            z-index: 1000;
             padding: 1rem 5%;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            background: transparent;
-        }
-
-        nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            align-items: center;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(22, 93, 255, 0.05);
         }
 
         .logo {
-            height: 40px;
             display: flex;
             align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.25rem;
         }
 
         .logo img {
-            height: 100%;
+            height: 40px;
             width: auto;
         }
 
         .nav-links {
             display: flex;
-            list-style: none;
             gap: 2.5rem;
+            list-style: none;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--dark);
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: var(--transition);
             position: relative;
         }
 
@@ -111,118 +123,114 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--gradient-primary);
-            transition: width 0.3s ease;
+            background: var(--primary);
+            transition: var(--transition);
         }
 
         .nav-links a:hover {
-            color: var(--primary-purple);
+            color: var(--primary);
         }
 
         .nav-links a:hover::after {
             width: 100%;
         }
 
-        .cta-button {
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
             padding: 0.75rem 1.5rem;
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
             border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
-        .cta-button:hover {
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 8px 20px rgba(22, 93, 255, 0.3);
         }
 
-        .hamburger {
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(22, 93, 255, 0.2);
+        }
+
+        .menu-toggle {
             display: none;
             flex-direction: column;
-            cursor: pointer;
             gap: 4px;
+            cursor: pointer;
         }
 
-        .hamburger span {
+        .menu-toggle span {
             width: 24px;
             height: 2px;
-            background: var(--text-dark);
-            transition: all 0.3s ease;
+            background: var(--dark);
+            transition: var(--transition);
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 72px;
-            left: -100%;
-            width: 100%;
-            background: white;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            padding: 2rem 5%;
-            transition: left 0.3s ease;
-            z-index: 999;
-        }
-
-        .mobile-menu.active {
-            left: 0;
-        }
-
-        .mobile-nav-links {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .mobile-nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-
-        section {
-            padding: 6rem 5%;
-        }
-
+        /* Hero 区域 */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 4rem;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
-            padding-top: 8rem;
+            padding: 10rem 5% 8rem;
+            background: linear-gradient(135deg, #F8FAFF 0%, #EEF4FF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(22, 93, 255, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
         }
 
         .hero-content {
-            flex: 1;
-            max-width: 600px;
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
             font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
+            font-weight: 700;
+            line-height: 1.2;
             margin-bottom: 1.5rem;
-            background: var(--gradient-primary);
+            color: var(--dark);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards 0.3s;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -230,243 +238,248 @@
 
         .hero p {
             font-size: 1.25rem;
-            color: var(--text-light);
+            color: var(--gray);
             margin-bottom: 2.5rem;
-            line-height: 1.7;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards 0.5s;
         }
 
-        .hero-cta {
+        .hero-buttons {
             display: flex;
             gap: 1rem;
-            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards 0.7s;
         }
 
-        .secondary-button {
-            padding: 0.75rem 1.5rem;
-            border: 2px solid var(--primary-purple);
-            color: var(--primary-purple);
-            background: transparent;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .secondary-button:hover {
-            background: var(--primary-purple);
-            color: white;
-            transform: translateY(-2px);
+        /* 通用区块样式 */
+        section {
+            padding: 6rem 5%;
         }
 
-        .hero-image {
-            flex: 1;
+        .section-header {
+            text-align: center;
             max-width: 600px;
-            height: 400px;
-            background: var(--gradient-primary);
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
+            margin: 0 auto 4rem;
         }
 
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: 50px 50px;
+        .section-subtitle {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
         }
 
         .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title h2 {
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            color: var(--dark);
+            line-height: 1.3;
         }
 
-        .section-title p {
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: 1.1rem;
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
 
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 核心业务 */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
 
         .service-card {
-            padding: 2.5rem;
-            background: white;
+            background: var(--white);
+            padding: 3rem 2rem;
             border-radius: 16px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(22, 93, 255, 0.05);
         }
 
         .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            border-color: transparent;
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
         .service-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-primary);
+            width: 64px;
+            height: 64px;
             border-radius: 12px;
-            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--white);
         }
 
         .service-card h3 {
             font-size: 1.5rem;
+            font-weight: 600;
             margin-bottom: 1rem;
+            color: var(--dark);
         }
 
         .service-card p {
-            color: var(--text-light);
+            color: var(--gray);
             line-height: 1.7;
         }
 
+        /* 运营数据 */
         .stats {
-            background: var(--bg-light);
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .stats .section-title {
+            color: var(--white);
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-card {
+            gap: 3rem;
             text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
         }
 
-        .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: var(--gradient-primary);
+        .stat-item h4 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 0.5rem;
         }
 
-        .stat-label {
-            color: var(--text-light);
+        .stat-item p {
+            color: var(--light-gray);
             font-size: 1.1rem;
-            font-weight: 500;
         }
 
-        .news-list {
-            max-width: 800px;
-            margin: 0 auto;
+        /* 新闻资讯 */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
         }
 
-        .news-item {
+        .news-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(22, 93, 255, 0.05);
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .news-image svg {
+            width: 64px;
+            height: 64px;
+            fill: rgba(255, 255, 255, 0.3);
+        }
+
+        .news-content {
             padding: 2rem;
-            border-bottom: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-
-        .news-item:last-child {
-            border-bottom: none;
-        }
-
-        .news-item:hover {
-            background: var(--bg-light);
-            transform: translateX(8px);
         }
 
         .news-date {
-            color: var(--primary-purple);
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
         }
 
-        .news-item h3 {
+        .news-card h3 {
             font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            line-height: 1.5;
         }
 
-        .news-item h3:hover {
-            color: var(--primary-purple);
+        .news-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
         }
 
-        .news-item p {
-            color: var(--text-light);
+        .news-link:hover {
+            gap: 0.75rem;
         }
 
+        /* 视频模块 */
         .video-section {
-            background: var(--bg-light);
+            background: var(--light);
         }
 
         .video-container {
             max-width: 900px;
             margin: 0 auto;
             aspect-ratio: 16 / 9;
-            background: #000;
+            background: var(--dark);
             border-radius: 16px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .video-placeholder {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.8) 0%, rgba(59, 130, 246, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(22, 93, 255, 0.8), rgba(64, 128, 255, 0.8)), url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&h=675&fit=crop') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            flex-direction: column;
-            gap: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .video-placeholder:hover {
+            filter: brightness(1.1);
         }
 
         .play-button {
@@ -475,12 +488,10 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .play-button:hover {
@@ -488,116 +499,131 @@
             background: rgba(255, 255, 255, 0.3);
         }
 
-        .play-button::after {
-            content: '';
-            width: 0;
-            height: 0;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            border-left: 20px solid white;
+        .play-button svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--white);
             margin-left: 4px;
         }
 
+        /* 页脚 */
         footer {
-            background: var(--text-dark);
-            color: white;
+            background: var(--dark);
+            color: var(--white);
             padding: 4rem 5% 2rem;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
             margin-bottom: 3rem;
         }
 
+        .footer-info {
+            max-width: 400px;
+        }
+
         .footer-logo {
-            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+            font-size: 1.5rem;
             margin-bottom: 1.5rem;
         }
 
-        .footer-about p {
-            color: #cbd5e1;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
+        .footer-logo img {
+            height: 48px;
+            width: auto;
+        }
+
+        .footer-info p {
+            color: var(--light-gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
         }
 
         .footer-links h4 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
             margin-bottom: 1.5rem;
+            color: var(--white);
         }
 
         .footer-links ul {
             list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
         }
 
         .footer-links a {
-            color: #cbd5e1;
+            color: var(--light-gray);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: var(--transition);
         }
 
         .footer-links a:hover {
-            color: var(--primary-blue);
+            color: var(--primary);
         }
 
         .footer-bottom {
-            border-top: 1px solid #475569;
             padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            color: #94a3b8;
-            font-size: 0.9rem;
+            color: var(--gray);
+            font-size: 0.875rem;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
+        /* 响应式设计 */
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-links, .nav-cta {
                 display: none;
             }
-            
-            .nav .cta-button {
-                display: none;
-            }
-            
-            .hamburger {
+
+            .menu-toggle {
                 display: flex;
             }
-            
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 6rem;
-            }
-            
+
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
-            .hero-cta {
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
                 justify-content: center;
             }
-            
-            .hero-image {
-                width: 100%;
-                height: 300px;
-            }
-            
-            .section-title h2 {
+
+            .section-title {
                 font-size: 2rem;
             }
-            
-            .services-grid {
+
+            .services-grid, .news-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .stat-item h4 {
+                font-size: 2.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
 
@@ -605,11 +631,11 @@
             .hero h1 {
                 font-size: 2rem;
             }
-            
-            .hero p {
-                font-size: 1rem;
+
+            .section-title {
+                font-size: 1.75rem;
             }
-            
+
             .stats-grid {
                 grid-template-columns: 1fr;
             }
@@ -617,244 +643,319 @@
     </style>
 </head>
 <body>
+    <!-- 加载动画 -->
     <div class="loader">
         <div class="loader-circle"></div>
     </div>
 
-    <nav id="navbar">
-        <div class="logo">
-            <img src="assets/logo.png" alt="国文汇通 Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,#6366f1,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;>国文汇通</span>'">
-        </div>
+    <!-- 导航栏 -->
+    <nav>
+        <a href="#" class="logo">
+            <img src="assets/logo.png" alt="国文汇通 Logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiByeD0iOCIgZmlsbD0iIzE2NURGRiIvPgo8cGF0aCBkPSJNMTIgMTZIMzZWMzJIMTJWMTZaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K'">
+            <span>国文汇通</span>
+        </a>
         <ul class="nav-links">
             <li><a href="#home">首页</a></li>
             <li><a href="#services">核心业务</a></li>
-            <li><a href="#stats">运营中心</a></li>
+            <li><a href="#stats">运营数据</a></li>
             <li><a href="#news">新闻资讯</a></li>
-            <li><a href="#video">平台介绍</a></li>
+            <li><a href="#about">关于我们</a></li>
         </ul>
-        <a href="https://x.gwht.jscaee.cn" class="cta-button" target="_blank">立即下载</a>
-        <div class="hamburger" id="hamburger">
+        <div class="nav-cta">
+            <a href="https://www.guowenhuitong.com" class="btn btn-outline" target="_blank">访问官网</a>
+            <a href="https://x.gwht.jscaee.cn" class="btn btn-primary" target="_blank">立即下载</a>
+        </div>
+        <div class="menu-toggle">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
 
-    <div class="mobile-menu" id="mobileMenu">
-        <ul class="mobile-nav-links">
-            <li><a href="#home">首页</a></li>
-            <li><a href="#services">核心业务</a></li>
-            <li><a href="#stats">运营中心</a></li>
-            <li><a href="#news">新闻资讯</a></li>
-            <li><a href="#video">平台介绍</a></li>
-        </ul>
-        <a href="https://x.gwht.jscaee.cn" class="cta-button" target="_blank" style="width: 100%; text-align: center;">立即下载</a>
-    </div>
-
+    <!-- Hero 区域 -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>数字资产文化版权平台</h1>
-            <p>以文化为魂·以科技为器·以金融为力，让中华文化数字化、资产化、全球化</p>
-            <div class="hero-cta">
-                <a href="https://x.gwht.jscaee.cn" class="cta-button" target="_blank">立即体验</a>
-                <a href="#services" class="secondary-button">了解更多</a>
+            <h1>以文化为魂·以科技为器·以金融为力</h1>
+            <p>让中华文化数字化、资产化、全球化</p>
+            <div class="hero-buttons">
+                <a href="https://x.gwht.jscaee.cn" class="btn btn-primary" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    立即下载
+                </a>
+                <a href="#services" class="btn btn-outline">了解业务</a>
             </div>
         </div>
-        <div class="hero-image"></div>
     </section>
 
+    <!-- 核心业务 -->
     <section id="services">
-        <div class="section-title">
-            <h2>核心业务</h2>
-            <p>我们提供全方位的数字资产文化版权服务，赋能文化产业数字化转型</p>
+        <div class="section-header fade-in">
+            <div class="section-subtitle">核心业务</div>
+            <h2 class="section-title">构建数字文化产业新生态</h2>
         </div>
         <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">01</div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21 5V3H3v2l8 9v5H8v2h8v-2h-3v-5l8-9zM5.14 5h13.72l-6.86 7.71L5.14 5z"/>
+                    </svg>
+                </div>
                 <h3>数字藏品交易</h3>
-                <p>安全合规的数字藏品交易平台，支持多种文化数字资产的发行、购买、转让，为创作者和收藏家提供可靠的交易环境。</p>
+                <p>安全合规的数字藏品交易平台，为用户提供可信的数字藏品发行、购买、收藏、流转全链路服务，保障数字资产的真实性和唯一性。</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">02</div>
+            <div class="service-card fade-in" style="transition-delay: 0.2s">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7 18h10v-2H7v2zm0-4h10v-2H7v2zm0-4h10V8H7v2zm16-8H3c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2zm0 18H3V4h18v14z"/>
+                    </svg>
+                </div>
                 <h3>文化产权交易</h3>
-                <p>规范的文化产权交易服务，涵盖著作权、商标权、专利权等各类文化产权的流转，促进文化资源的优化配置。</p>
+                <p>规范的文化产权交易服务，涵盖著作权、商标权、专利权等各类文化资产的交易服务，为文化产业的资产流动提供专业平台。</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">03</div>
+            <div class="service-card fade-in" style="transition-delay: 0.4s">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                    </svg>
+                </div>
                 <h3>数字资产服务</h3>
-                <p>专业的数字资产存证、确权、评估服务，运用区块链技术保障数字资产的唯一性、真实性和不可篡改性。</p>
+                <p>专业的数字资产存证、确权、评估服务，基于区块链技术实现数字资产的全生命周期管理，确保数字资产的安全可信和价值流转。</p>
             </div>
         </div>
     </section>
 
-    <section class="stats" id="stats">
-        <div class="section-title">
-            <h2>运营中心</h2>
-            <p>平台稳定运营，服务百万用户，推动数字文化产业发展</p>
+    <!-- 运营数据 -->
+    <section id="stats" class="stats">
+        <div class="section-header fade-in">
+            <div class="section-subtitle">运营中心</div>
+            <h2 class="section-title">平台运营数据</h2>
         </div>
         <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">100万+</div>
-                <div class="stat-label">注册用户</div>
+            <div class="stat-item fade-in">
+                <h4 class="counter" data-target="1000000">0</h4>
+                <p>注册用户</p>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">500+</div>
-                <div class="stat-label">合作IP方</div>
+            <div class="stat-item fade-in" style="transition-delay: 0.2s">
+                <h4 class="counter" data-target="500">0</h4>
+                <p>合作IP方</p>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">3000+</div>
-                <div class="stat-label">上线藏品</div>
+            <div class="stat-item fade-in" style="transition-delay: 0.4s">
+                <h4 class="counter" data-target="3000">0</h4>
+                <p>上线藏品</p>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">99.9%</div>
-                <div class="stat-label">系统可用率</div>
+            <div class="stat-item fade-in" style="transition-delay: 0.6s">
+                <h4 class="counter" data-target="99.9">0</h4>
+                <p>系统可用率</p>
             </div>
         </div>
     </section>
 
+    <!-- 新闻资讯 -->
     <section id="news">
-        <div class="section-title">
-            <h2>新闻资讯</h2>
-            <p>了解平台最新动态和行业前沿资讯</p>
+        <div class="section-header fade-in">
+            <div class="section-subtitle">新闻资讯</div>
+            <h2 class="section-title">最新动态</h2>
         </div>
-        <div class="news-list">
-            <div class="news-item">
-                <div class="news-date">2024-01-15</div>
-                <h3>国文汇通与多家文化机构达成战略合作</h3>
-                <p>平台与多家国家级文化机构签署战略合作协议，共同推动优秀传统文化的数字化转化和创新发展。</p>
+        <div class="news-grid">
+            <div class="news-card fade-in">
+                <div class="news-image">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 14H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1zm-1-7h-4v3h-2v-3H7l4-5 4 5z"/>
+                    </svg>
+                </div>
+                <div class="news-content">
+                    <div class="news-date">2024-01-15</div>
+                    <h3>国文汇通与多家文化机构达成战略合作</h3>
+                    <a href="#" class="news-link">
+                        查看详情
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <div class="news-item">
-                <div class="news-date">2024-01-08</div>
-                <h3>平台全新版本上线，优化交易体验</h3>
-                <p>V2.0版本正式发布，全面升级用户界面和交易系统，大幅提升操作流畅度和系统安全性。</p>
+            <div class="news-card fade-in" style="transition-delay: 0.2s">
+                <div class="news-image">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 14H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1zm-1-7h-4v3h-2v-3H7l4-5 4 5z"/>
+                    </svg>
+                </div>
+                <div class="news-content">
+                    <div class="news-date">2024-01-08</div>
+                    <h3>平台全新版本上线，优化交易体验</h3>
+                    <a href="#" class="news-link">
+                        查看详情
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <div class="news-item">
-                <div class="news-date">2023-12-25</div>
-                <h3>数字文化产业发展论坛成功举办</h3>
-                <p>由我平台主办的数字文化产业发展论坛在京召开，行业专家共同探讨数字文化产业发展新机遇。</p>
+            <div class="news-card fade-in" style="transition-delay: 0.4s">
+                <div class="news-image">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 14H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1zm-1-7h-4v3h-2v-3H7l4-5 4 5z"/>
+                    </svg>
+                </div>
+                <div class="news-content">
+                    <div class="news-date">2023-12-28</div>
+                    <h3>数字文化产业发展论坛成功举办</h3>
+                    <a href="#" class="news-link">
+                        查看详情
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="video-section" id="video">
-        <div class="section-title">
-            <h2>平台介绍</h2>
-            <p>三分钟了解国文汇通平台生态与服务体系</p>
+    <!-- 视频模块 -->
+    <section class="video-section">
+        <div class="section-header fade-in">
+            <div class="section-subtitle">品牌视频</div>
+            <h2 class="section-title">了解国文汇通</h2>
         </div>
-        <div class="video-container">
+        <div class="video-container fade-in">
             <div class="video-placeholder">
-                <div class="play-button" id="playButton"></div>
-                <p>平台介绍视频</p>
+                <div class="play-button">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- 页脚 -->
     <footer>
         <div class="footer-content">
-            <div class="footer-about">
-                <div class="logo footer-logo">
-                    <img src="assets/logo.png" alt="国文汇通 Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=font-size:1.5rem;font-weight:700;color:white;>国文汇通</span>'">
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="assets/logo.png" alt="国文汇通 Logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiByeD0iOCIgZmlsbD0iIzE2NURGRiIvPgo8cGF0aCBkPSJNMTIgMTZIMzZWMzJIMTJWMTZaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K'">
+                    <span>国文汇通</span>
                 </div>
-                <p>国文汇通是国内领先的数字资产文化版权购物商城，致力于通过技术创新推动中华文化的数字化、资产化、全球化发展。</p>
-                <p>官网：www.guowenhuitong.com</p>
+                <p>以文化为魂·以科技为器·以金融为力，让中华文化数字化、资产化、全球化。我们致力于构建领先的数字文化资产服务平台，推动文化产业创新发展。</p>
+                <div class="nav-cta">
+                    <a href="https://www.guowenhuitong.com" class="btn btn-outline" target="_blank" style="border-color: var(--primary); color: var(--primary);">访问官网</a>
+                    <a href="https://x.gwht.jscaee.cn" class="btn btn-primary" target="_blank" style="background: var(--primary);">立即下载</a>
+                </div>
             </div>
             <div class="footer-links">
-                <h4>业务中心</h4>
+                <h4>快速链接</h4>
                 <ul>
-                    <li><a href="#services">数字藏品交易</a></li>
-                    <li><a href="#services">文化产权交易</a></li>
-                    <li><a href="#services">数字资产服务</a></li>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#services">核心业务</a></li>
+                    <li><a href="#stats">运营数据</a></li>
+                    <li><a href="#news">新闻资讯</a></li>
+                    <li><a href="#about">关于我们</a></li>
                 </ul>
             </div>
             <div class="footer-links">
-                <h4>关于我们</h4>
+                <h4>联系我们</h4>
                 <ul>
-                    <li><a href="#home">平台介绍</a></li>
-                    <li><a href="#news">新闻动态</a></li>
-                    <li><a href="#">联系我们</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>法律合规</h4>
-                <ul>
-                    <li><a href="#">用户协议</a></li>
-                    <li><a href="#">隐私政策</a></li>
-                    <li><a href="#">知识产权声明</a></li>
+                    <li><a href="https://www.guowenhuitong.com" target="_blank">官网：www.guowenhuitong.com</a></li>
+                    <li><a href="https://x.gwht.jscaee.cn" target="_blank">下载：x.gwht.jscaee.cn</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 国文汇通 版权所有 | 合规经营 健康发展</p>
+            <p>&copy; 2024 国文汇通. 保留所有权利.</p>
         </div>
     </footer>
 
     <script>
+        // 页面加载完成
         window.addEventListener('load', () => {
-            const loader = document.querySelector('.loader');
-            loader.classList.add('hidden');
-        });
+            // 隐藏加载动画
+            setTimeout(() => {
+                document.querySelector('.loader').classList.add('hidden');
+            }, 600);
 
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+            // 滚动淡入动画
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(el => observer.observe(el));
+
+            // 数字滚动动画
+            const counters = document.querySelectorAll('.counter');
+            const animateCounter = (counter) => {
+                const target = parseFloat(counter.dataset.target);
+                const duration = 2000;
+                const start = 0;
+                const increment = target / (duration / 16);
+                let current = start;
+
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        if (target >= 1000) {
+                            counter.textContent = Math.floor(current).toLocaleString() + '+';
+                        } else if (target < 100) {
+                            counter.textContent = current.toFixed(1) + '%';
+                        } else {
+                            counter.textContent = Math.floor(current) + '+';
+                        }
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        if (target >= 1000) {
+                            counter.textContent = target.toLocaleString() + '+';
+                        } else if (target < 100) {
+                            counter.textContent = target.toFixed(1) + '%';
+                        } else {
+                            counter.textContent = target + '+';
+                        }
+                    }
+                };
+
+                updateCounter();
+            };
+
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        counters.forEach(animateCounter);
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            const statsSection = document.querySelector('#stats');
+            if (statsSection) {
+                statsObserver.observe(statsSection);
             }
         });
 
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.8)';
+                nav.style.boxShadow = 'none';
+            }
         });
 
-        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
+        // 视频播放点击效果
+        const videoPlaceholder = document.querySelector('.video-placeholder');
+        if (videoPlaceholder) {
+            videoPlaceholder.addEventListener('click', () => {
+                alert('品牌视频播放功能将在后续版本上线，敬请期待！');
             });
-        });
-
-        const playButton = document.getElementById('playButton');
-        playButton.addEventListener('click', () => {
-            alert('平台介绍视频正在加载中，敬请期待');
-        });
-
-        const statNumbers = document.querySelectorAll('.stat-number');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        statNumbers.forEach(num => {
-            observer.observe(num);
-        });
-
-        const serviceCards = document.querySelectorAll('.service-card');
-        serviceCards.forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.1}s`;
-            observer.observe(card);
-        });
-
-        document.head.insertAdjacentHTML('beforeend', `
-            <style>
-                @keyframes fadeInUp {
-                    from {
-                        opacity: 0;
-                        transform: translateY(20px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-            </style>
-        `);
+        }
     </script>
 </body>
 </html>
