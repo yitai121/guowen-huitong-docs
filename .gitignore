@@ -1,22 +1,48 @@
-# 敏感配置文件
-config.env
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-
-# Node modules
-node_modules/
-
-# OS
+node_modules
+dist
 .DS_Store
-Thumbs.db
-
-# Logs
-*.log
-
-# 临时文件
-*.tmp
 *.swp
+.git/*
+__pycache__/
+*.pyc
+.venv/*
+*.o
+*.a
+/vendor
+*.egg-info/
+/.env
+.env
+
+# 视频文件
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.mkv
+*.webm
+*.m4v
+*.mpeg
+*.mpg
+*.3gp
+*.f4v
+*.rmvb
+*.vob
+
+# 归档文件
+*.iso
+*.dmg
+*.rar
+*.zip
+*.gz
+
+# 文档类也默认加入
+*.pdf
+*.docx
+*.doc
+*.xlsx
+*.xls
+*.ppt
+*.pptx
+*.xlsx
+*.csv
