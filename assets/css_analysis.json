@@ -1,0 +1,75 @@
+{
+  "total_css_files": 13,
+  "total_css_size": 1104123,
+  "gradient_count": 77,
+  "animation_count": 433,
+  "transition_count": 455,
+  "backdrop_count": 0,
+  "extracted_files": [
+    {
+      "url": "https://2.ss.508sys.com/css/dist/styles/siteBase2.min.css?v=202602051602",
+      "filename": "styles_1.css",
+      "size": 80154
+    },
+    {
+      "url": "https://2.ss.508sys.com/css/dist/styles/base2.min.css?v=202602061417",
+      "filename": "styles_2.css",
+      "size": 479974
+    },
+    {
+      "url": "https://2.ss.508sys.com/css/dist/module.min.css?v=202601071138",
+      "filename": "styles_3.css",
+      "size": 119032
+    },
+    {
+      "url": "https://jzs.508sys.com/574/fkTheme.min.css?v=20250217160642&aid=34039069&wid=0&isNavV2=true&isBannerV2=true",
+      "filename": "styles_4.css",
+      "size": 127217
+    },
+    {
+      "url": "https://2.ss.508sys.com/css/dist/styles/themeMixin.min.css?v=202402221530",
+      "filename": "styles_5.css",
+      "size": 295
+    },
+    {
+      "url": "https://2.ss.508sys.com/css/dist/styles/moduleAnimation.min.css?v=202402221530",
+      "filename": "styles_6.css",
+      "size": 4762
+    },
+    {
+      "url": "https://jzs.508sys.com/5/2048_1/fkModule.min.css?v=20250217160642&aid=34039069&wid=0",
+      "filename": "styles_7.css",
+      "size": 60991
+    },
+    {
+      "url": "https://2.ss.508sys.com/css/dist/styles/newSearchBoxStyle.min.css?v=202503171453",
+      "filename": "styles_8.css",
+      "size": 21608
+    },
+    {
+      "url": "https://2.ss.508sys.com/css/dist/styles/floatBtn1.min.css?v=202402221530",
+      "filename": "styles_9.css",
+      "size": 8636
+    },
+    {
+      "url": "https://www.guowenhuitong.com/jzcusstyle.jsp?id=-1&colId=2&extId=0&_csw=0&clientSupportWebp=true",
+      "filename": "styles_10.css",
+      "size": 34171
+    },
+    {
+      "url": "https://jzfe.faisys.com/dist/jz/biz-shared/bizShared.min.css?v=202603181400",
+      "filename": "styles_11.css",
+      "size": 69650
+    },
+    {
+      "url": "https://2.ss.508sys.com/css/dist/styles/fontsIco.min.css?v=202404081140",
+      "filename": "styles_12.css",
+      "size": 97554
+    },
+    {
+      "type": "inline",
+      "filename": "inline_1.css",
+      "size": 83
+    }
+  ]
+}

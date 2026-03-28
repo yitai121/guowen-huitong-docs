@@ -1,0 +1,105 @@
+{
+  "total_js_files": 18,
+  "total_js_size": 2673090,
+  "key_features": {
+    "animate": 350,
+    "animation": 513,
+    "hover": 692,
+    "scroll": 853,
+    "transition": 125,
+    "gradient": 28,
+    "backdrop": 0
+  },
+  "extracted_files": [
+    {
+      "url": "https://fe.faisco.cn/hawkEye/outerChain.jsp?appid=3008&aid=34039069&bsAid=34039069&bsId=0&bsWid=0&isOem=true&webName=site",
+      "filename": "script_1.js",
+      "size": 689
+    },
+    {
+      "url": "https://1.ss.508sys.com/js/comm/vue/vue-2.7.14.min.js?v=202310161432",
+      "filename": "script_2.js",
+      "size": 108737
+    },
+    {
+      "url": "https://1.ss.508sys.com/js/dist/libs/comMethods.min.js?v=202412021706",
+      "filename": "script_3.js",
+      "size": 1120
+    },
+    {
+      "url": "https://1.ss.508sys.com/js/dist/libs/jzUtils.min.js?v=202503171453",
+      "filename": "script_4.js",
+      "size": 10609
+    },
+    {
+      "url": "https://1.ss.508sys.com/js/comm/polyfill.min.js?v=202307101206",
+      "filename": "script_5.js",
+      "size": 129297
+    },
+    {
+      "url": "https://jzfe.faisys.com/dist/jz/request/jzRequest.min.js?v=202603181400",
+      "filename": "script_6.js",
+      "size": 58871
+    },
+    {
+      "url": "https://jzfe.faisys.com/dist/jz/utils/jzUtils.min.js?v=202603181400",
+      "filename": "script_7.js",
+      "size": 110745
+    },
+    {
+      "url": "https://jzfe.faisys.com/dist/jz/biz-shared/bizShared.min.js?v=202603181400",
+      "filename": "script_8.js",
+      "size": 169715
+    },
+    {
+      "url": "https://1.ss.508sys.com/js/comm/jquery/jquery-core.min.js?v=202307101206",
+      "filename": "script_9.js",
+      "size": 94694
+    },
+    {
+      "url": "https://1.ss.508sys.com/js/comm/jquery/jquery-mousewheel.min.js?v=202307101206",
+      "filename": "script_10.js",
+      "size": 2904
+    },
+    {
+      "url": "https://1.ss.508sys.com/js/dist/frontend.min.js?v=202512300957",
+      "filename": "script_11.js",
+      "size": 75742
+    },
+    {
+      "url": "https://1.ss.508sys.com/js/comm/jquery/jquery-ui-core.min.js?v=202307101206",
+      "filename": "script_12.js",
+      "size": 229533
+    },
+    {
+      "url": "https://1.ss.508sys.com/js/dist/partitionSite.min.js?v=202603190920",
+      "filename": "script_13.js",
+      "size": 1274858
+    },
+    {
+      "url": "https://jzfe.faisys.com/dist/jz/locale/2052.min.js?v=202603181400",
+      "filename": "script_14.js",
+      "size": 66987
+    },
+    {
+      "url": "https://1.ss.508sys.com/js/dist/site.min.js?v=202512300957",
+      "filename": "script_15.js",
+      "size": 336279
+    },
+    {
+      "type": "inline",
+      "filename": "inline_1.js",
+      "size": 568
+    },
+    {
+      "type": "inline",
+      "filename": "inline_2.js",
+      "size": 1650
+    },
+    {
+      "type": "inline",
+      "filename": "inline_3.js",
+      "size": 92
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "total_gradients": 5,
+  "total_keyframes": 8,
+  "total_transitions": 36,
+  "total_hovers": 40,
+  "gradient_examples": [
+    "linear-gradient",
+    "linear-gradient",
+    "linear-gradient",
+    "linear-gradient",
+    "linear-gradient"
+  ],
+  "keyframe_names": [
+    "rotateMusicIcon",
+    "animateSuccessTip",
+    "animateSuccessLong",
+    "rotatePlaceholder",
+    "fk_adsorptionRound_num",
+    "mymove",
+    "fadeIn",
+    "serviceAnimation"
+  ],
+  "transition_examples": [
+    "height .8s",
+    "height .8s",
+    "height .8s",
+    "height .8s}.localer .localerPanel_4 .localerList{background-color:#f4f4f4",
+    "all .7s ease",
+    "all .7s ease",
+    "all .7s ease",
+    "all .7s ease",
+    "height .8s",
+    "height .8s"
+  ]
+}
