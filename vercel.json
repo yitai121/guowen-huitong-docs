@@ -8,12 +8,12 @@
       "destination": "/admin.html"
     },
     {
-      "source": "/admin/(.*)",
-      "destination": "/assets/admin/$1"
+      "source": "/admin/dashboard",
+      "destination": "/assets/admin/dashboard.html"
     },
     {
-      "source": "/(.*)",
-      "destination": "/$1"
+      "source": "/admin/login",
+      "destination": "/assets/admin/login.html"
     }
   ]
 }
