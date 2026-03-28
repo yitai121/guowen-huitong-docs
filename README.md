@@ -11,8 +11,8 @@
 
 ## 🌐 访问地址
 
-- **主页**: https://guowenhuitong-docs.vercel.app
-- **管理后台**: https://guowenhuitong-docs.vercel.app/admin.html
+- **主页**: https://gwht.cc
+- **管理后台**: https://gwht.cc/admin.html
 
 ## 🔐 管理员登录
 
@@ -29,10 +29,11 @@
 ├── CNAME               # 域名配置
 ├── README.md           # 项目说明
 └── assets/             # 静态资源
-    ├── index.html      # 主页资源
-    ├── admin.html      # 管理后台资源
     ├── admin/          # 管理页面
+    │   ├── dashboard.html    # 仪表板
+    │   └── login.html        # 登录页
     └── js/             # JavaScript 文件
+        └── security-config.js  # 安全配置
 ```
 
 ## 🚀 快速开始
