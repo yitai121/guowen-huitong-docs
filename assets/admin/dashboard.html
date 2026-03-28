@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta name="robots" content="noindex, nofollow">
+    <title>管理后台 - 国文汇通</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%236366f1'/><stop offset='100%' style='stop-color:%23a855f7'/></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23grad)'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='white'>⚙️</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --secondary: #a855f7;
+            --accent: #ec4899;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --glass-bg: rgba(15, 23, 42, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.3);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* 动态背景 */
+        .dynamic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: float 30s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--primary);
+            top: -200px;
+            right: -200px;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--secondary);
+            bottom: -150px;
+            left: -150px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, -50px) scale(1.1); }
+        }
+
+        /* 主容器 */
+        .app-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(2, 6, 23, 0.8);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 60px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(239, 68, 68, 0.4);
+        }
+
+        /* 统计卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), var(--shadow-glow);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--light);
+            opacity: 0.7;
+            font-weight: 500;
+        }
+
+        .stat-change {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            margin-top: 12px;
+        }
+
+        .stat-change.up {
+            color: var(--success);
+        }
+
+        .stat-change.down {
+            color: var(--danger);
+        }
+
+        /* 内容区域 */
+        .content-section {
+            margin: 40px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* 数据表格 */
+        .table-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 18px 24px;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .data-table th {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--light);
+            opacity: 0.7;
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .data-table tr:hover {
+            background: rgba(99, 102, 241, 0.03);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .status-inactive {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+        }
+
+        /* 操作按钮组 */
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .navbar {
+                flex-direction: column;
+                gap: 16px;
+                padding: 16px 0;
+            }
+
+            .nav-actions {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            }
+
+            .data-table {
+                font-size: 14px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 14px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 动态背景 -->
+    <div class="dynamic-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="app-container">
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <div class="logo">
+                <div class="logo-icon">⚙️</div>
+                <span>管理后台</span>
+            </div>
+            <div class="nav-actions">
+                <a href="/index.html" class="btn btn-secondary">← 返回首页</a>
+                <a href="/admin/login.html" class="btn btn-danger" onclick="sessionStorage.removeItem('adminSession')">🚪 退出登录</a>
+            </div>
+        </nav>
+
+        <!-- 统计卡片 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value">1,000+</div>
+                        <div class="stat-label">总文档数</div>
+                    </div>
+                    <div class="stat-icon">📄</div>
+                </div>
+                <div class="stat-change up">
+                    <span>↑</span>
+                    <span>12% 较上月</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value">50K+</div>
+                        <div class="stat-label">活跃用户</div>
+                    </div>
+                    <div class="stat-icon">👥</div>
+                </div>
+                <div class="stat-change up">
+                    <span>↑</span>
+                    <span>8% 较上月</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value">1M+</div>
+                        <div class="stat-label">下载次数</div>
+                    </div>
+                    <div class="stat-icon">⬇️</div>
+                </div>
+                <div class="stat-change up">
+                    <span>↑</span>
+                    <span>15% 较上月</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value">98%</div>
+                        <div class="stat-label">系统健康度</div>
+                    </div>
+                    <div class="stat-icon">✅</div>
+                </div>
+                <div class="stat-change up">
+                    <span>↑</span>
+                    <span>2% 较上月</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 文档管理 -->
+        <div class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">文档管理</h2>
+                <button class="btn btn-primary" onclick="alert('上传功能开发中')">📤 上传新文档</button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>文档名称</th>
+                            <th>分类</th>
+                            <th>下载量</th>
+                            <th>状态</th>
+                            <th>更新时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>企业知识管理白皮书</td>
+                            <td>产品白皮书</td>
+                            <td>50K+</td>
+                            <td><span class="status-badge status-active">已发布</span></td>
+                            <td>2024-03-26</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn">编辑</button>
+                                    <button class="action-btn">下架</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>技术架构设计指南</td>
+                            <td>技术文档</td>
+                            <td>35K+</td>
+                            <td><span class="status-badge status-active">已发布</span></td>
+                            <td>2024-03-25</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn">编辑</button>
+                                    <button class="action-btn">下架</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>用户操作手册</td>
+                            <td>用户手册</td>
+                            <td>80K+</td>
+                            <td><span class="status-badge status-active">已发布</span></td>
+                            <td>2024-03-24</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn">编辑</button>
+                                    <button class="action-btn">下架</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>API 开发者文档</td>
+                            <td>API文档</td>
+                            <td>25K+</td>
+                            <td><span class="status-badge status-active">已发布</span></td>
+                            <td>2024-03-23</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn">编辑</button>
+                                    <button class="action-btn">下架</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>安全合规指南</td>
+                            <td>安全文档</td>
+                            <td>40K+</td>
+                            <td><span class="status-badge status-inactive">草稿</span></td>
+                            <td>2024-03-22</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn">编辑</button>
+                                    <button class="action-btn">发布</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 验证会话
+        function verifySession() {
+            const sessionData = sessionStorage.getItem('adminSession');
+            if (!sessionData) {
+                window.location.href = '/admin/login.html';
+                return false;
+            }
+            return true;
+        }
+
+        // 页面加载
+        window.onload = function() {
+            if (!verifySession()) {
+                return;
+            }
+        };
+    </script>
+</body>
+</html>

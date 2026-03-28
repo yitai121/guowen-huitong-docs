@@ -1,0 +1,29 @@
+{
+  "name": "guowen-huitong-docs",
+  "version": "1.0.0",
+  "description": "国文汇通 - 专业的资料管理系统",
+  "main": "assets/index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000 --directory assets",
+    "build": "echo 'Building for production...'",
+    "deploy:vercel": "vercel --prod",
+    "deploy:netlify": "netlify deploy --prod",
+    "test": "echo 'Running tests...'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/guowen-huitong-docs.git"
+  },
+  "keywords": [
+    "documentation",
+    "content-management",
+    "file-manager",
+    "guowen-huitong"
+  ],
+  "author": "国文汇通",
+  "license": "MIT",
+  "devDependencies": {
+    "vercel": "^32.0.0",
+    "netlify-cli": "^17.0.0"
+  }
+}

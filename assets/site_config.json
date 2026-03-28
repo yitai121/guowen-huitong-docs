@@ -1,0 +1,57 @@
+{
+  "site": {
+    "name": "国文汇通",
+    "description": "专业的资料管理系统，提供产品白皮书、技术文档、用户手册、API文档等资料下载。",
+    "keywords": "国文汇通,资料管理,文档下载,产品白皮书,技术文档,API文档",
+    "domain": "www.guowenhuitong.com"
+  },
+  "invite": {
+    "enabled": true,
+    "url": "https://invite.x.gwht.jscaee.cn/signup?inviteCode=HBEV2B",
+    "buttonText": "下载国文汇通",
+    "showInHeader": true,
+    "showInFooter": true
+  },
+  "customerService": {
+    "enabled": true,
+    "showInPage": true,
+    "showPosition": "bottom-right",
+    "services": [
+      {
+        "id": "cs1",
+        "name": "官方客服1",
+        "title": "扫码添加官方客服",
+        "qrcode": "",
+        "visible": true,
+        "description": "工作时间: 周一至周五 9:00-18:00"
+      },
+      {
+        "id": "cs2",
+        "name": "官方客服2",
+        "title": "扫码添加技术支持",
+        "qrcode": "",
+        "visible": true,
+        "description": "工作时间: 7×24小时在线"
+      }
+    ]
+  },
+  "media": {
+    "maxImageWidth": 1200,
+    "maxImageHeight": 800,
+    "maxVideoWidth": 1280,
+    "maxVideoHeight": 720,
+    "enableLazyLoad": true,
+    "enableLightbox": true
+  },
+  "admin": {
+    "enabled": true,
+    "requireLogin": true,
+    "password": "admin888"
+  },
+  "ui": {
+    "theme": "dark",
+    "enableAnimation": true,
+    "enableParticles": true,
+    "enableSmoothScroll": true
+  }
+}
