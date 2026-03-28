@@ -4,82 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http: gwht.jscaee.cn; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http: *; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta name="referrer" content="no-referrer-when-downgrade">
-    <meta name="description" content="国文汇通 - 江苏省文交所旗下数字文创资产平台，国资背景，全链合规，探索数字艺术新世界，开启您的数字藏品之旅">
-    <meta name="keywords" content="国文汇通,数字藏品,文化版权,数字资产,江苏文交所,国文通卷,国文通宝">
+    <meta name="description" content="国文汇通 - 江苏省文交所旗下数字文创资产平台，国资背景，全链合规，提供数字藏品交易、文化版权交易等服务">
+    <meta name="keywords" content="国文汇通,数字藏品,文化版权,数字资产,江苏文交所,国文通卷,国文通宝,实时行情">
     <meta name="author" content="江苏文交所-国文汇通">
     <meta property="og:title" content="国文汇通 - 探索数字艺术新世界">
-    <meta property="og:description" content="江苏省文交所旗下数字文创资产平台，国资背书，全链合规，7x24小时在线交易，资金T+1极速到账">
+    <meta property="og:description" content="江苏省文交所旗下数字文创资产平台，实时行情，7x24小时交易">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://gwht.jscaee.cn/logo.png">
-    <title>国文汇通 - 探索数字艺术新世界 | 江苏省文交所旗下平台</title>
+    <title>国文汇通 - 数字文创资产交易平台 | 实时行情</title>
     <link rel="icon" href="https://gwht.jscaee.cn/logo.png">
-    <link rel="shortcut icon" href="https://gwht.jscaee.cn/logo.png">
-    <link rel="apple-touch-icon" href="https://gwht.jscaee.cn/logo.png">
     <style>
         /* ==================== 全局变量 ==================== */
         :root {
-            /* 主色调 - 科技蓝绿色 */
             --primary: #00d4ff;
             --primary-dark: #0099cc;
             --primary-light: #66e0ff;
-
-            /* 辅助色 - 霓虹紫 */
             --secondary: #9d4edd;
             --secondary-light: #c084fc;
-            --secondary-dark: #7c3aed;
-
-            /* 强调色 - 活力橙 */
             --accent: #ff6b35;
-            --accent-light: #ff9f7b;
-
-            /* 功能色 */
             --success: #00ff88;
             --warning: #ffcc00;
             --danger: #ff4757;
             --info: #00d4ff;
-
-            /* 深色主题 */
             --bg-primary: #0a0a0f;
             --bg-secondary: #12121a;
             --bg-tertiary: #1a1a24;
-            --bg-card: rgba(26, 26, 36, 0.8);
-
-            /* 文字颜色 */
+            --bg-card: rgba(26, 26, 36, 0.85);
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
             --text-tertiary: #707080;
-
-            /* 渐变 */
             --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #9d4edd 100%);
             --gradient-secondary: linear-gradient(135deg, #9d4edd 0%, #ff6b35 100%);
             --gradient-accent: linear-gradient(135deg, #ff6b35 0%, #ffcc00 100%);
-
-            /* 阴影 */
             --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
             --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
             --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
             --shadow-glow: 0 0 40px rgba(0, 212, 255, 0.3);
             --shadow-glow-purple: 0 0 60px rgba(157, 78, 221, 0.3);
-
-            /* 圆角 */
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 24px;
             --radius-2xl: 32px;
-
-            /* 过渡 */
             --transition-fast: 150ms ease;
             --transition-base: 300ms ease;
             --transition-slow: 500ms ease;
         }
 
-        /* ==================== 全局重置 ==================== */
         * {
             margin: 0;
             padding: 0;
@@ -103,7 +78,7 @@
             min-height: 100vh;
         }
 
-        /* ==================== 3D 网格背景 ==================== */
+        /* ==================== 背景动画 ==================== */
         .background-grid {
             position: fixed;
             top: 0;
@@ -133,8 +108,8 @@
             pointer-events: none;
             z-index: -2;
             background:
-                radial-gradient(ellipse at 20% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(157, 78, 221, 0.1) 0%, transparent 50%);
+                radial-gradient(ellipse at 20% 20%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(157, 78, 221, 0.15) 0%, transparent 50%);
             animation: glowPulse 8s ease-in-out infinite;
         }
 
@@ -149,7 +124,7 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(10, 10, 15, 0.8);
+            background: rgba(10, 10, 15, 0.9);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(0, 212, 255, 0.1);
             z-index: 1000;
@@ -158,12 +133,12 @@
         }
 
         .navbar.scrolled {
-            background: rgba(10, 10, 15, 0.95);
+            background: rgba(10, 10, 15, 0.98);
             box-shadow: var(--shadow-lg);
         }
 
         .navbar-content {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -184,6 +159,7 @@
             border-radius: 12px;
             object-fit: contain;
             background: rgba(255, 255, 255, 0.05);
+            box-shadow: var(--shadow-glow);
         }
 
         .navbar-brand-text {
@@ -208,6 +184,7 @@
             font-weight: 500;
             transition: var(--transition-fast);
             position: relative;
+            padding: 0.5rem 0;
         }
 
         .navbar-nav a:hover {
@@ -217,11 +194,11 @@
         .navbar-nav a::after {
             content: '';
             position: absolute;
-            bottom: -4px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: var(--gradient-primary);
             transition: var(--transition-base);
         }
 
@@ -271,6 +248,64 @@
             background: rgba(0, 212, 255, 0.1);
         }
 
+        /* ==================== 实时行情模块 ==================== */
+        .market-ticker {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(18, 18, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            z-index: 999;
+            overflow: hidden;
+            padding: 0.75rem 0;
+        }
+
+        .ticker-content {
+            display: flex;
+            animation: tickerScroll 30s linear infinite;
+            gap: 2rem;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            white-space: nowrap;
+        }
+
+        .ticker-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .ticker-price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .ticker-change {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .ticker-change.up {
+            color: var(--success);
+        }
+
+        .ticker-change.down {
+            color: var(--danger);
+        }
+
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         /* ==================== Hero 区域 ==================== */
         .hero {
             position: relative;
@@ -278,13 +313,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 8rem 2rem 4rem;
+            padding: 10rem 2rem 4rem;
             text-align: center;
             overflow: hidden;
         }
 
         .hero-content {
-            max-width: 1000px;
+            max-width: 1200px;
             position: relative;
             z-index: 1;
         }
@@ -303,11 +338,6 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        .hero-badge svg {
-            width: 16px;
-            height: 16px;
-        }
-
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
@@ -320,23 +350,23 @@
         }
 
         .hero-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 24px;
+            width: 150px;
+            height: 150px;
+            border-radius: 30px;
             object-fit: contain;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(157, 78, 221, 0.1));
-            border: 2px solid rgba(0, 212, 255, 0.3);
-            box-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(157, 78, 221, 0.15));
+            border: 3px solid rgba(0, 212, 255, 0.3);
+            box-shadow: 0 0 80px rgba(0, 212, 255, 0.4);
             animation: logoGlow 3s ease-in-out infinite;
         }
 
         @keyframes logoGlow {
-            0%, 100% { box-shadow: 0 0 60px rgba(0, 212, 255, 0.3); }
-            50% { box-shadow: 0 0 80px rgba(0, 212, 255, 0.5); }
+            0%, 100% { box-shadow: 0 0 80px rgba(0, 212, 255, 0.4); }
+            50% { box-shadow: 0 0 100px rgba(0, 212, 255, 0.6); }
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 1.5rem;
@@ -348,13 +378,24 @@
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.375rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
-            max-width: 800px;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
             animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-highlights {
@@ -374,12 +415,6 @@
             font-size: 0.95rem;
         }
 
-        .highlight-item svg {
-            color: var(--success);
-            width: 20px;
-            height: 20px;
-        }
-
         .hero-actions {
             display: flex;
             justify-content: center;
@@ -388,26 +423,15 @@
             animation: fadeInUp 0.8s ease 0.4s both;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ==================== 公司介绍 ==================== */
-        .section {
-            padding: 6rem 2rem;
-            position: relative;
+        /* ==================== 实时行情卡片 ==================== */
+        .live-market {
+            padding: 4rem 2rem;
+            background: var(--bg-secondary);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .section-tag {
@@ -431,91 +455,17 @@
             background-clip: text;
         }
 
-        .section-description {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .about-grid {
+        .market-grid {
             max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-content h3 {
-            font-size: 1.875rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .about-content p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .about-features {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            transition: var(--transition-base);
-        }
-
-        .feature-card:hover {
-            border-color: var(--primary);
-            box-shadow: var(--shadow-glow);
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(0, 212, 255, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .feature-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .feature-text {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        /* ==================== 产品展示 ==================== */
-        .products-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
 
-        .product-card {
+        .market-card {
             background: var(--bg-card);
-            border: 1px solid rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.15);
             border-radius: var(--radius-xl);
             padding: 2rem;
             transition: var(--transition-base);
@@ -523,121 +473,303 @@
             overflow: hidden;
         }
 
-        .product-card::before {
+        .market-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 4px;
             background: var(--gradient-primary);
             transform: scaleX(0);
             transition: var(--transition-base);
         }
 
-        .product-card:hover {
-            border-color: rgba(0, 212, 255, 0.3);
+        .market-card:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .market-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .market-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .market-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .market-live {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--success);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .market-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .market-change {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .market-change.up {
+            color: var(--success);
+        }
+
+        .market-change.down {
+            color: var(--danger);
+        }
+
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .market-stat {
+            padding: 1rem;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: var(--radius-md);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ==================== 运营中心展示 ==================== */
+        .operations {
+            padding: 6rem 2rem;
+        }
+
+        .operations-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .operation-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: var(--transition-base);
+        }
+
+        .operation-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
         }
 
-        .product-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .product-icon {
-            width: 64px;
-            height: 64px;
+        .operation-image {
+            width: 100%;
+            height: 200px;
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(157, 78, 221, 0.2));
-            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            font-size: 2rem;
+            font-size: 4rem;
         }
 
-        .product-title {
+        .operation-content {
+            padding: 1.5rem;
+        }
+
+        .operation-title {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
             color: var(--text-primary);
         }
 
-        .product-description {
+        .operation-description {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
             line-height: 1.6;
         }
 
-        .product-features {
-            list-style: none;
+        /* ==================== 核心服务 ==================== */
+        .services {
+            padding: 6rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            transition: var(--transition-base);
+        }
+
+        .service-card:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .service-icon {
+            font-size: 3rem;
             margin-bottom: 1.5rem;
         }
 
-        .product-features li {
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-items {
+            list-style: none;
+        }
+
+        .service-items li {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
         }
 
-        .product-features li svg {
+        .service-items li svg {
             color: var(--success);
             width: 16px;
             height: 16px;
             flex-shrink: 0;
         }
 
-        /* ==================== 统计数据 ==================== */
-        .stats-section {
-            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+        /* ==================== 核心优势 ==================== */
+        .advantages {
             padding: 6rem 2rem;
         }
 
-        .stats-grid {
+        .advantages-grid {
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
         }
 
-        .stat-card {
+        .advantage-card {
             text-align: center;
-            padding: 2rem;
+            padding: 2rem 1rem;
             background: var(--bg-card);
             border: 1px solid rgba(0, 212, 255, 0.1);
             border-radius: var(--radius-xl);
             transition: var(--transition-base);
         }
 
-        .stat-card:hover {
+        .advantage-card:hover {
             border-color: var(--primary);
             box-shadow: var(--shadow-glow);
         }
 
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
+        .advantage-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .advantage-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .advantage-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ==================== 愿景声明 ==================== */
+        .vision {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            text-align: center;
+        }
+
+        .vision-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .vision-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .vision-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 0.5rem;
-            font-variant-numeric: tabular-nums;
         }
 
-        .stat-label {
+        .vision-text {
+            font-size: 1.25rem;
             color: var(--text-secondary);
-            font-size: 1rem;
-            font-weight: 500;
+            line-height: 2;
         }
 
-        /* ==================== 最新资讯 ==================== */
+        /* ==================== 新闻资讯 ==================== */
+        .news {
+            padding: 6rem 2rem;
+        }
+
         .news-grid {
             max-width: 1400px;
             margin: 0 auto;
@@ -688,28 +820,12 @@
             margin-bottom: 0.75rem;
             color: var(--text-primary);
             line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
 
         .news-summary {
             color: var(--text-secondary);
             font-size: 0.875rem;
             line-height: 1.6;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .news-source {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.8rem;
-            color: var(--text-tertiary);
         }
 
         /* ==================== 页脚 ==================== */
@@ -720,11 +836,11 @@
         }
 
         .footer-content {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 3rem;
             margin-bottom: 3rem;
         }
 
@@ -761,6 +877,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             transition: var(--transition-fast);
+            font-size: 0.9rem;
         }
 
         .footer-links a:hover {
@@ -768,7 +885,7 @@
         }
 
         .footer-bottom {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -784,51 +901,17 @@
             font-size: 0.875rem;
         }
 
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-card);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            transition: var(--transition-base);
-        }
-
-        .footer-social a:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            box-shadow: var(--shadow-glow);
-        }
-
         /* ==================== 响应式设计 ==================== */
-        @media (max-width: 1024px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
+        @media (max-width: 1200px) {
+            .market-grid,
+            .operations-grid,
+            .services-grid,
             .news-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
+            .advantages-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -845,25 +928,21 @@
                 font-size: 1rem;
             }
 
-            .products-grid {
+            .market-grid,
+            .operations-grid,
+            .services-grid,
+            .news-grid,
+            .advantages-grid {
                 grid-template-columns: 1fr;
             }
 
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .news-grid {
-                grid-template-columns: 1fr;
+            .market-price {
+                font-size: 2rem;
             }
 
             .footer-content {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
                 gap: 2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
             }
         }
     </style>
@@ -883,353 +962,392 @@
 
             <ul class="navbar-nav">
                 <li><a href="#about">关于我们</a></li>
-                <li><a href="#products">核心产品</a></li>
-                <li><a href="#features">平台特色</a></li>
-                <li><a href="#news">最新资讯</a></li>
+                <li><a href="#market">实时行情</a></li>
+                <li><a href="#operations">运营中心</a></li>
+                <li><a href="#services">核心服务</a></li>
+                <li><a href="#news">新闻资讯</a></li>
             </ul>
 
             <div class="navbar-actions">
-                <a href="https://x.gwht.jscaee.cn" target="_blank" class="btn btn-outline">进入网页版</a>
+                <a href="https://x.gwht.jscaee.cn" target="_blank" class="btn btn-outline">网页版</a>
                 <a href="https://apps.apple.com/cn/app/id6760961605" target="_blank" class="btn btn-primary">下载 App</a>
             </div>
         </div>
     </nav>
 
+    <!-- 实时行情滚动条 -->
+    <div class="market-ticker">
+        <div class="ticker-content">
+            <div class="ticker-item">
+                <span class="ticker-name">国文通卷</span>
+                <span class="ticker-price">¥128.50</span>
+                <span class="ticker-change up">+12.35%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-name">国文通宝</span>
+                <span class="ticker-price">¥1.25</span>
+                <span class="ticker-change up">+8.72%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-name">24H成交量</span>
+                <span class="ticker-price">156.8万</span>
+                <span class="ticker-change up">+25.6%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-name">总市值</span>
+                <span class="ticker-price">12.8亿</span>
+                <span class="ticker-change up">+5.2%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-name">活跃用户</span>
+                <span class="ticker-price">52.6万</span>
+                <span class="ticker-change up">+18.3%</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-name">数字藏品</span>
+                <span class="ticker-price">1,258</span>
+                <span class="ticker-change up">+15</span>
+            </div>
+            <div class="ticker-item">
+                <span class="ticker-name">合作机构</span>
+                <span class="ticker-price">86</span>
+                <span class="ticker-change up">+3</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero 区域 -->
     <section class="hero">
         <div class="hero-content">
             <div class="hero-badge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-                <span>江苏省文交所旗下平台</span>
+                <span>🏆</span>
+                <span>江苏省文交所旗下平台 | 国资背景 全链合规</span>
             </div>
 
             <div class="hero-logo-container">
                 <img src="https://gwht.jscaee.cn/logo.png" alt="国文汇通 Logo" class="hero-logo">
             </div>
 
-            <h1 class="hero-title">探索数字艺术新世界<br>开启您的数字藏品之旅</h1>
+            <h1 class="hero-title">以文化为魂 · 以科技为器<br>让中华文化数字化、资产化、全球化</h1>
 
             <p class="hero-subtitle">
-                引领文化资产数字化，推动数字金融与文化产业深度协同。合规发行与交易，
-                江苏文化产权交易所为国文汇通提供合规监管指导、合法出入金及交易通道。
+                国文汇通是中国领先的文化类数字资产基础设施平台，汇聚文化之光，通达数字未来。
+                致力于推动文化资产确权、交易、流通的全球标准化，让文化价值实现社会共享与国际传播。
             </p>
 
             <div class="hero-highlights">
                 <div class="highlight-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 13l4 4L19 7"/>
-                    </svg>
+                    <span>✓</span>
                     <span>国资背景</span>
                 </div>
                 <div class="highlight-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 13l4 4L19 7"/>
-                    </svg>
+                    <span>✓</span>
                     <span>全链合规</span>
                 </div>
                 <div class="highlight-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 13l4 4L19 7"/>
-                    </svg>
+                    <span>✓</span>
                     <span>7x24小时交易</span>
                 </div>
                 <div class="highlight-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 13l4 4L19 7"/>
-                    </svg>
+                    <span>✓</span>
                     <span>T+1极速到账</span>
+                </div>
+                <div class="highlight-item">
+                    <span>✓</span>
+                    <span>数实融合</span>
                 </div>
             </div>
 
             <div class="hero-actions">
                 <a href="https://x.gwht.jscaee.cn" target="_blank" class="btn btn-outline">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 16v-4M12 8h.01"/>
-                    </svg>
-                    无需下载进入网页版
+                    进入网页版
                 </a>
                 <a href="https://apps.apple.com/cn/app/id6760961605" target="_blank" class="btn btn-primary">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                    </svg>
                     iOS 下载
                 </a>
                 <a href="https://eopcos.x.gwht.jscaee.cn/gwht/apk/android.apk" target="_blank" class="btn btn-primary">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.523 15.341a.996.996 0 0 0 0-1.992.996.996 0 0 0 0 1.992m-11.046 0a.996.996 0 0 0 0-1.992.996.996 0 0 0 0 1.992m11.405-6.02 1.997-3.459a.416.416 0 0 0-.152-.567.416.416 0 0 0-.568.152L17.12 8.95c-1.555-.713-3.297-1.11-5.12-1.11s-3.565.397-5.12 1.11L4.84 5.447a.416.416 0 0 0-.568-.152.416.416 0 0 0-.152.567l1.997 3.46C2.688 11.186.343 14.656 0 18.761h24c-.344-4.105-2.688-7.575-6.118-9.44"/>
-                    </svg>
                     Android 下载
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- 关于我们 -->
-    <section id="about" class="section">
+    <!-- 实时行情 -->
+    <section id="market" class="live-market">
         <div class="section-header">
-            <span class="section-tag">关于我们</span>
-            <h2 class="section-title">国资背景 · 合规先行</h2>
-            <p class="section-description">国文汇通是江苏省文化产权交易所重点孵化的数字文创资产平台，背靠江苏省文化投资管理集团，拥有纯正的国资背景和完善的合规体系。</p>
+            <span class="section-tag">实时行情</span>
+            <h2 class="section-title">数字资产实时行情</h2>
+            <p class="section-description">数据实时更新，市场动态尽在掌握</p>
         </div>
 
-        <div class="about-grid">
-            <div class="about-content">
-                <h3>大国崛起 · 东方潮玩</h3>
-                <p>
-                    国文汇通以"大国崛起·东方潮玩"为核心理念，打造线上线下融合的文化旅游潮玩消费综合体。
-                    通过 Web3 技术与数字藏品，实现资产通证化、文化数字化、文创交易化等多维生态布局。
-                </p>
-                <p>
-                    平台由国内首个数字藏品平台"唯一艺术"原班人马打造，率先拿下国内首个 RWA 数字资产合规牌照，
-                    在版权确权、链上交易等领域拥有丰富技术经验。
-                </p>
-                <p>
-                    作为国企背景加持的数字文创专业平台，国文汇通依托江苏省文交所的资源优势，坚守合规化运营理念，
-                    以国家"十五五"数字经济发展规划纲要为指引，深耕"数字+实体权益"融合模式，
-                    致力于让中华优秀传统文化在数字化时代焕发新生。
-                </p>
-
-                <div class="about-features">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                            </svg>
-                        </div>
-                        <div class="feature-title">国资背书</div>
-                        <div class="feature-text">江苏文投集团控股，省级金融监管</div>
+        <div class="market-grid">
+            <div class="market-card">
+                <div class="market-header">
+                    <h3 class="market-name">国文通卷</h3>
+                    <div class="market-live">
+                        <div class="live-dot"></div>
+                        <span>实时</span>
                     </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-                            </svg>
-                        </div>
-                        <div class="feature-title">全链合规</div>
-                        <div class="feature-text">RWA 数字资产合规牌照</div>
+                </div>
+                <div class="market-price">¥128.50</div>
+                <div class="market-change up">+12.35% +¥14.20</div>
+                <div class="market-stats">
+                    <div class="market-stat">
+                        <div class="stat-label">24H成交额</div>
+                        <div class="stat-value">¥8,520.6万</div>
                     </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                            </svg>
-                        </div>
-                        <div class="feature-title">极速交易</div>
-                        <div class="feature-text">7x24小时在线，T+1到账</div>
+                    <div class="market-stat">
+                        <div class="stat-label">24H成交量</div>
+                        <div class="stat-value">66.3万张</div>
                     </div>
+                    <div class="market-stat">
+                        <div class="stat-label">市值</div>
+                        <div class="stat-value">¥128.5亿</div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="stat-label">流通量</div>
+                        <div class="stat-value">1,000万张</div>
+                    </div>
+                </div>
+            </div>
 
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
-                        <div class="feature-title">数实融合</div>
-                        <div class="feature-text">线上线下文旅权益兑换</div>
+            <div class="market-card">
+                <div class="market-header">
+                    <h3 class="market-name">国文通宝</h3>
+                    <div class="market-live">
+                        <div class="live-dot"></div>
+                        <span>实时</span>
+                    </div>
+                </div>
+                <div class="market-price">¥1.25</div>
+                <div class="market-change up">+8.72% +¥0.10</div>
+                <div class="market-stats">
+                    <div class="market-stat">
+                        <div class="stat-label">24H成交额</div>
+                        <div class="stat-value">¥1,256.8万</div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="stat-label">24H成交量</div>
+                        <div class="stat-value">1,005万枚</div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="stat-label">市值</div>
+                        <div class="stat-value">¥12.5亿</div>
+                    </div>
+                    <div class="market-stat">
+                        <div class="stat-label">流通量</div>
+                        <div class="stat-value">10亿枚</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 核心产品 -->
-    <section id="products" class="section" style="background: var(--bg-secondary);">
+    <!-- 运营中心 -->
+    <section id="operations" class="operations">
         <div class="section-header">
-            <span class="section-tag">核心产品</span>
-            <h2 class="section-title">双资产驱动 · 生态闭环</h2>
-            <p class="section-description">国文汇通打造"国文通卷"和"国文通宝"双资产体系，构建完整的数字资产生态。</p>
+            <span class="section-tag">运营中心</span>
+            <h2 class="section-title">全国运营中心展示</h2>
+            <p class="section-description">覆盖全国重点城市，提供本地化服务支持</p>
         </div>
 
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-icon">📜</div>
-                <h3 class="product-title">国文通卷</h3>
-                <p class="product-description">
-                    平台核心权益凭证，总量恒定1000万张。寄存通卷可获得稳定的每日通宝收益，月化收益 15%-18%。
-                </p>
-                <ul class="product-features">
+        <div class="operations-grid">
+            <div class="operation-card">
+                <div class="operation-image">🏢</div>
+                <div class="operation-content">
+                    <h3 class="operation-title">杭州运营中心</h3>
+                    <p class="operation-description">
+                        位于数字经济之都，负责华东地区业务拓展、用户服务与技术支持，
+                        致力于推动区域文化资产数字化进程。
+                    </p>
+                </div>
+            </div>
+
+            <div class="operation-card">
+                <div class="operation-image">🏗️</div>
+                <div class="operation-content">
+                    <h3 class="operation-title">深圳运营中心</h3>
+                    <p class="operation-description">
+                        立足粤港澳大湾区，负责华南地区市场开发、合作对接与生态建设，
+                        打造国际化数字文创交易平台。
+                    </p>
+                </div>
+            </div>
+
+            <div class="operation-card">
+                <div class="operation-image">🏙️</div>
+                <div class="operation-content">
+                    <h3 class="operation-title">重庆运营中心</h3>
+                    <p class="operation-description">
+                        服务西南地区，结合成渝双城经济圈战略，
+                        推动巴蜀文化与数字技术深度融合。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心服务 -->
+    <section id="services" class="services">
+        <div class="section-header">
+            <span class="section-tag">核心服务</span>
+            <h2 class="section-title">五大核心服务体系</h2>
+            <p class="section-description">全链路服务，构建完整数字文创生态</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📜</div>
+                <h3 class="service-title">文化资产确权与流通</h3>
+                <ul class="service-items">
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 13l4 4L19 7"/>
                         </svg>
-                        持有升值随时交易
+                        文博资源上链
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 13l4 4L19 7"/>
                         </svg>
-                        T+1交易卖出，24小时后到账
+                        非遗项目数字化
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 13l4 4L19 7"/>
                         </svg>
-                        寄存产出通宝，每天0.5%
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 13l4 4L19 7"/>
-                        </svg>
-                        解约取回T+10后可自由出售
+                        艺术品与收藏品交易
                     </li>
                 </ul>
             </div>
 
-            <div class="product-card">
-                <div class="product-icon">💰</div>
-                <h3 class="product-title">国文通宝</h3>
-                <p class="product-description">
-                    平台流通媒介，总量10亿枚。通宝可在文旅、文创等线下场景消费，用于平台交易、打新等。
-                </p>
-                <ul class="product-features">
+            <div class="service-card">
+                <div class="service-icon">🎡</div>
+                <h3 class="service-title">数字文旅与文化消费</h3>
+                <ul class="service-items">
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 13l4 4L19 7"/>
                         </svg>
-                        优先参与新资产打新
+                        文旅权益凭证化
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 13l4 4L19 7"/>
                         </svg>
-                        平台内交易支付
+                        文化园区消费支付
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 13l4 4L19 7"/>
                         </svg>
-                        文旅景区门票兑换
-                    </li>
-                    <li>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 13l4 4L19 7"/>
-                        </svg>
-                        线下商城消费支付
+                        文创衍生品经济
                     </li>
                 </ul>
             </div>
 
-            <div class="product-card">
-                <div class="product-icon">🎨</div>
-                <h3 class="product-title">数字藏品</h3>
-                <p class="product-description">
-                    独特的数字文创资产，依托区块链技术实现链上确权，每一份藏品都有唯一的"数字身份证"。
-                </p>
-                <ul class="product-features">
+            <div class="service-card">
+                <div class="service-icon">💰</div>
+                <h3 class="service-title">五大收益玩法</h3>
+                <ul class="service-items">
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 13l4 4L19 7"/>
                         </svg>
-                        区块链确权，唯一标识
+                        寄存收益
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 13l4 4L19 7"/>
                         </svg>
-                        实体权益数字绑定
+                        国文打新
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 13l4 4L19 7"/>
                         </svg>
-                        文博非遗数字化呈现
+                        交易与流通收益
                     </li>
                     <li>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M5 13l4 4L19 7"/>
                         </svg>
-                        文化IP资产化流通
+                        GameFi / StudyFi收益
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 13l4 4L19 7"/>
+                        </svg>
+                        实体消费与权益映射
                     </li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- 平台特色 -->
-    <section id="features" class="section">
+    <!-- 核心优势 -->
+    <section id="advantages" class="advantages">
         <div class="section-header">
-            <span class="section-tag">平台特色</span>
-            <h2 class="section-title">四大核心优势</h2>
-            <p class="section-description">国文汇通凭借硬核实力，成为数字文创领域的合规标杆。</p>
+            <span class="section-tag">核心优势</span>
+            <h2 class="section-title">五大核心竞争优势</h2>
+            <p class="section-description">打造行业领先的文化数字资产平台</p>
         </div>
 
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-icon">🏛️</div>
-                <h3 class="product-title">合规底色</h3>
-                <p class="product-description">
-                    江苏省文交所重点孵化，拥有省级金融牌照，业务全流程受地方金融和文化部门双重监管。
-                    受邀参与中国信通院闭门会，登上 CCTV《中国新闻》特写报道。
-                </p>
+        <div class="advantages-grid">
+            <div class="advantage-card">
+                <div class="advantage-icon">🏛️</div>
+                <h4 class="advantage-title">国资背景</h4>
+                <p class="advantage-text">合规牌照</p>
             </div>
 
-            <div class="product-card">
-                <div class="product-icon">👥</div>
-                <h3 class="product-title">专业团队</h3>
-                <p class="product-description">
-                    由"唯一艺术"创始人佟世天领衔，汇聚唯一艺术、IBOX 两大头部平台核心团队。
-                    拥有成熟的技术体系与运营经验，曾创下单日交易额超10亿元的成绩。
-                </p>
+            <div class="advantage-card">
+                <div class="advantage-icon">⛓️</div>
+                <h4 class="advantage-title">区块链</h4>
+                <p class="advantage-text">确权与AI估值</p>
             </div>
 
-            <div class="product-card">
-                <div class="product-icon">🔗</div>
-                <h3 class="product-title">技术支撑</h3>
-                <p class="product-description">
-                    区块链确权、AI 智能合约、大数据评估技术深度融合，打造"文化资产上链与确权中心"。
-                    每份数字藏品都有唯一"数字身份证"，确保实体权益与数字藏品一一绑定。
-                </p>
+            <div class="advantage-card">
+                <div class="advantage-icon">🌐</div>
+                <h4 class="advantage-title">RWA</h4>
+                <p class="advantage-text">全生态平台</p>
             </div>
 
-            <div class="product-card">
-                <div class="product-icon">🌐</div>
-                <h3 class="product-title">生态布局</h3>
-                <p class="product-description">
-                    覆盖文博资源上链、非遗项目数字化、艺术品交易、文旅消费、数字金融等多场景。
-                    通过"通胀+通缩"双循环机制维持生态平衡，实现价值支撑。
-                </p>
+            <div class="advantage-card">
+                <div class="advantage-icon">💎</div>
+                <h4 class="advantage-title">双资产</h4>
+                <p class="advantage-text">稳健可持续</p>
+            </div>
+
+            <div class="advantage-card">
+                <div class="advantage-icon">👥</div>
+                <h4 class="advantage-title">高粘性</h4>
+                <p class="advantage-text">社群裂变</p>
             </div>
         </div>
     </section>
 
-    <!-- 统计数据 -->
-    <section class="stats-section">
-        <div class="section-header">
-            <span class="section-tag">数据说话</span>
-            <h2 class="section-title">平台实力见证</h2>
-        </div>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">52%</div>
-                <div class="stat-label">江苏文投集团持股</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">1000万</div>
-                <div class="stat-label">国文通卷总量</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">10亿</div>
-                <div class="stat-label">国文通宝总量</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">7x24</div>
-                <div class="stat-label">小时在线交易</div>
-            </div>
+    <!-- 愿景声明 -->
+    <section class="vision">
+        <div class="vision-content">
+            <div class="vision-icon">✨</div>
+            <h2 class="vision-title">汇聚文化之光 · 通达数字未来</h2>
+            <p class="vision-text">
+                成为中国领先的文化类数字资产基础设施平台；<br>
+                打造国家级文化数字化生态枢纽，让文化价值实现社会共享与国际传播；<br>
+                推动文化资产确权、交易、流通的全球标准化与国际互认；<br>
+                建设一个让文化、科技与金融共生共荣的数字文明新体系。<br><br>
+                成为连接中华文化与世界的数字桥梁，<br>
+                让文化资产"确权有据、流通有序、价值可见"。
+            </p>
         </div>
     </section>
 
-    <!-- 最新资讯 -->
-    <section id="news" class="section">
+    <!-- 新闻资讯 -->
+    <section id="news" class="news">
         <div class="section-header">
-            <span class="section-tag">最新资讯</span>
+            <span class="section-tag">新闻资讯</span>
             <h2 class="section-title">国文汇通动态</h2>
-            <p class="section-description">了解国文汇通最新发展和行业动态。</p>
+            <p class="section-description">了解国文汇通最新发展和行业动态</p>
         </div>
 
         <div class="news-grid">
@@ -1238,11 +1356,7 @@
                 <div class="news-content">
                     <div class="news-date">2026-03-03</div>
                     <h4 class="news-title">国文汇通联动泉州鲤城 以数字文创赋能马年文旅</h4>
-                    <p class="news-summary">
-                        江苏省文交所旗下专业数字文创资产平台国文汇通，携手福建省泉州市鲤城文投集团，
-                        以泉州马年生肖文化IP"六合同风马"为核心载体，打造线上线下深度融合的数字文创文旅盛宴。
-                    </p>
-                    <div class="news-source">来源：中国日报网</div>
+                    <p class="news-summary">携手福建省泉州市鲤城文投集团，以泉州马年生肖文化IP"六合同风马"为核心载体，打造线上线下深度融合的数字文创文旅盛宴。</p>
                 </div>
             </div>
 
@@ -1251,11 +1365,7 @@
                 <div class="news-content">
                     <div class="news-date">2026-03-09</div>
                     <h4 class="news-title">国文汇通商业模式介绍</h4>
-                    <p class="news-summary">
-                        文化板块将是未来20年黄金赛道，尤其在离火九运周期，情绪经济正成为最具潜力的发展风口！
-                        江苏文交所——全球首家文创平台，国文汇通以"大国崛起·东方潮玩"为核心理念。
-                    </p>
-                    <div class="news-source">来源：中华网科技频道</div>
+                    <p class="news-summary">文化板块将是未来20年黄金赛道，以"大国崛起·东方潮玩"为核心理念，打造线上线下融合的文化旅游潮玩消费综合体。</p>
                 </div>
             </div>
 
@@ -1264,50 +1374,7 @@
                 <div class="news-content">
                     <div class="news-date">2026-03-06</div>
                     <h4 class="news-title">国资背景+合规布局 国文汇通引领数藏新行情</h4>
-                    <p class="news-summary">
-                        春节过后，数字藏品行业暗流涌动，各大平台动作频频，行业新一轮行情正在酝酿。
-                        国文汇通凭借国企背书、合规运营、全生态布局的硬核实力，成为市场资金的首选标的。
-                    </p>
-                    <div class="news-source">来源：手机搜狐网</div>
-                </div>
-            </div>
-
-            <div class="news-card" onclick="window.open('https://mt.sohu.com/a/993174123_122618224', '_blank')">
-                <div class="news-image">🔗</div>
-                <div class="news-content">
-                    <div class="news-date">2026-03-06</div>
-                    <h4 class="news-title">数实融合破局数藏困局 国文汇通构建三大能力模型</h4>
-                    <p class="news-summary">
-                        近期数字藏品行业刮起"数实融合"新风潮，国文汇通早已凭借前瞻性布局，
-                        打造出文化资产数实融合的成熟样板，成为新风口下的领军平台。
-                    </p>
-                    <div class="news-source">来源：搜狐网</div>
-                </div>
-            </div>
-
-            <div class="news-card" onclick="window.open('https://www.sohu.com/a/984812573_122618229/', '_blank')">
-                <div class="news-image">🛡️</div>
-                <div class="news-content">
-                    <div class="news-date">2026-02-07</div>
-                    <h4 class="news-title">数字藏品市场爆赚秘籍：拆解国文汇通4大护城河</h4>
-                    <p class="news-summary">
-                        2025年的数字藏品圈，堪称"凛冬已至"，但国文汇通逆势暴涨。
-                        本文深入剖析国文汇通背后的4大核心逻辑，揭示其成为"寒冬里的暖流"的原因。
-                    </p>
-                    <div class="news-source">来源：搜狐</div>
-                </div>
-            </div>
-
-            <div class="news-card" onclick="window.open('http://m.toutiao.com/group/7613978402969633289/', '_blank')">
-                <div class="news-image">✅</div>
-                <div class="news-content">
-                    <div class="news-date">2026-03-06</div>
-                    <h4 class="news-title">国企基因+三重防线：国文汇通引领数藏合规革命</h4>
-                    <p class="news-summary">
-                        2026年开年以来，数字藏品行业迎来最严合规监管，无资质平台加速出清。
-                        国文汇通凭借纯正的国企基因与全链路合规体系，成为用户心中的"安全避风港"。
-                    </p>
-                    <div class="news-source">来源：今日头条</div>
+                    <p class="news-summary">春节过后，数字藏品行业暗流涌动，国文汇通凭借国企背书、合规运营、全生态布局的硬核实力，成为市场资金的首选标的。</p>
                 </div>
             </div>
         </div>
@@ -1328,12 +1395,22 @@
             </div>
 
             <div class="footer-links">
-                <h4>快速链接</h4>
+                <h4>快速导航</h4>
                 <ul>
-                    <li><a href="#about">关于我们</a></li>
-                    <li><a href="#products">核心产品</a></li>
-                    <li><a href="#features">平台特色</a></li>
-                    <li><a href="#news">最新资讯</a></li>
+                    <li><a href="#market">实时行情</a></li>
+                    <li><a href="#operations">运营中心</a></li>
+                    <li><a href="#services">核心服务</a></li>
+                    <li><a href="#advantages">核心优势</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>关于我们</h4>
+                <ul>
+                    <li><a href="#about">公司简介</a></li>
+                    <li><a href="#news">公司动态</a></li>
+                    <li><a href="#news">前沿资讯</a></li>
+                    <li><a href="#news">联系我们</a></li>
                 </ul>
             </div>
 
@@ -1347,11 +1424,12 @@
             </div>
 
             <div class="footer-links">
-                <h4>联系我们</h4>
+                <h4>法律声明</h4>
                 <ul>
-                    <li><a href="https://gwht.jscaee.cn" target="_blank">官方网站</a></li>
-                    <li><a href="mailto:service@gwht.cn">客服邮箱</a></li>
-                    <li><a href="#news">新闻中心</a></li>
+                    <li><a href="#">服务条款</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">免责声明</a></li>
+                    <li><a href="#">版权说明</a></li>
                 </ul>
             </div>
         </div>
@@ -1359,15 +1437,6 @@
         <div class="footer-bottom">
             <div class="footer-copyright">
                 © 2026 江苏文交所-国文汇通 All Rights Reserved | 江苏省文化投资管理集团控股
-            </div>
-            <div class="footer-social">
-                <a href="https://gwht.jscaee.cn" target="_blank" aria-label="官网">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="2" y1="12" x2="22" y2="12"/>
-                        <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-                    </svg>
-                </a>
             </div>
         </div>
     </footer>
@@ -1397,63 +1466,42 @@
             });
         });
 
-        // 数字动画效果
-        const animateNumbers = () => {
-            const statNumbers = document.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const text = stat.textContent;
-                const hasPercent = text.includes('%');
-                const hasBillion = text.includes('亿');
-                const hasTenMillion = text.includes('1000万');
+        // 实时行情数据模拟更新
+        function updateMarketData() {
+            const marketCards = document.querySelectorAll('.market-card');
+            marketCards.forEach(card => {
+                const priceElement = card.querySelector('.market-price');
+                const changeElement = card.querySelector('.market-change');
 
-                if (hasPercent) {
-                    // 已经是百分比，直接显示
-                    stat.textContent = text;
-                } else if (hasBillion) {
-                    // 10亿
-                    animateValue(stat, 0, 10, 2000, '', '亿');
-                } else if (hasTenMillion) {
-                    // 1000万
-                    animateValue(stat, 0, 1000, 2000, '', '万');
-                } else if (text.includes('7x24')) {
-                    // 7x24 保持原样
-                    stat.textContent = text;
-                } else {
-                    // 普通数字
-                    const value = parseInt(text);
-                    animateValue(stat, 0, value, 2000, '', '');
+                if (priceElement && changeElement) {
+                    const currentPrice = parseFloat(priceElement.textContent.replace('¥', ''));
+                    // 模拟价格波动 ±0.5%
+                    const change = (Math.random() - 0.5) * 0.01;
+                    const newPrice = currentPrice * (1 + change);
+
+                    priceElement.textContent = '¥' + newPrice.toFixed(2);
+
+                    // 更新涨跌幅
+                    const currentChange = parseFloat(changeElement.textContent.match(/[-+]?[\d.]+/)[0]);
+                    const newChange = currentChange + (change * 100);
+
+                    changeElement.className = 'market-change ' + (newChange >= 0 ? 'up' : 'down');
+                    changeElement.textContent = (newChange >= 0 ? '+' : '') + newChange.toFixed(2) + '%';
                 }
             });
-        };
-
-        const animateValue = (element, start, end, duration, prefix, suffix) => {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const value = Math.floor(progress * (end - start) + start);
-                element.textContent = prefix + value + suffix;
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        };
-
-        // Intersection Observer 触发数字动画
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateNumbers();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        const statsSection = document.querySelector('.stats-section');
-        if (statsSection) {
-            observer.observe(statsSection);
         }
+
+        // 每3秒更新一次行情数据
+        setInterval(updateMarketData, 3000);
+
+        // 页面加载动画
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
     </script>
 </body>
 </html>
