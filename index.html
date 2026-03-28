@@ -3,1023 +3,858 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http: *; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none';">
-    <meta name="description" content="国文汇通 - 数字资产文化版权购物商城，以文化为魂·以科技为器·以金融为力，让中华文化数字化、资产化、全球化">
-    <meta name="keywords" content="国文汇通,数字藏品,文化版权,数字资产,江苏文交所,国文通卷,国文通宝">
-    <title>首页 - 国文汇通</title>
+    <title>国文汇通 - 数字资产文化版权平台</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --primary-purple: #6366f1;
+            --primary-blue: #3b82f6;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+            --gradient-primary: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-blue) 100%);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-            background: #ffffff;
-            color: #333;
+            color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* 导航栏 */
-        .navbar {
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        .loader {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            z-index: 1000;
+            width: 100%;
+            height: 100vh;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
 
-        .navbar-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            height: 70px;
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-circle {
+            width: 48px;
+            height: 48px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--primary-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: transparent;
         }
 
-        .navbar-brand {
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            height: 40px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            text-decoration: none;
         }
 
-        .navbar-logo {
-            height: 45px;
+        .logo img {
+            height: 100%;
             width: auto;
         }
 
-        .navbar-brand-text {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1a56db;
-        }
-
-        .navbar-nav {
+        .nav-links {
             display: flex;
-            gap: 40px;
             list-style: none;
+            gap: 2.5rem;
         }
 
-        .navbar-nav a {
-            color: #333;
+        .nav-links a {
             text-decoration: none;
-            font-size: 15px;
+            color: var(--text-dark);
             font-weight: 500;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
+            position: relative;
         }
 
-        .navbar-nav a:hover {
-            color: #1a56db;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
         }
 
-        /* Hero 区域 */
-        .hero {
-            margin-top: 70px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .nav-links a:hover {
+            color: var(--primary-purple);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient-primary);
             color: white;
-            text-align: center;
-            padding: 100px 20px 80px;
-        }
-
-        .hero-logo {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 30px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 15px;
-        }
-
-        .hero-title {
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
-
-        .hero-subtitle {
-            font-size: 22px;
-            margin-bottom: 40px;
-            opacity: 0.95;
-        }
-
-        .btn-download {
-            display: inline-block;
-            background: #ff6b35;
-            color: white;
-            padding: 16px 40px;
-            border-radius: 30px;
-            font-size: 18px;
+            border: none;
+            border-radius: 8px;
             font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
             text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            display: inline-block;
         }
 
-        .btn-download:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4);
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
         }
 
-        /* 实时行情 */
-        .market-section {
-            background: #f8f9fa;
-            padding: 60px 20px;
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 72px;
+            left: -100%;
+            width: 100%;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 2rem 5%;
+            transition: left 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        section {
+            padding: 6rem 5%;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+            padding-top: 8rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .secondary-button {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-purple);
+            color: var(--primary-purple);
+            background: transparent;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .secondary-button:hover {
+            background: var(--primary-purple);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            flex: 1;
+            max-width: 600px;
+            height: 400px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 50px 50px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 32px;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
             font-weight: 700;
-            color: #1a56db;
-            margin-bottom: 40px;
+            margin-bottom: 1rem;
         }
 
-        .market-container {
-            max-width: 1200px;
+        .section-title p {
+            color: var(--text-light);
+            max-width: 600px;
             margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .market-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .market-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        .market-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .market-name {
-            font-size: 24px;
-            font-weight: 700;
-            color: #333;
-        }
-
-        .market-badge {
-            background: #e74c3c;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        .market-price {
-            font-size: 48px;
-            font-weight: 800;
-            color: #27ae60;
-            margin-bottom: 10px;
-        }
-
-        .market-change {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 25px;
-            padding: 8px 0;
-        }
-
-        .market-change.positive {
-            color: #27ae60;
-        }
-
-        .market-change.negative {
-            color: #e74c3c;
-        }
-
-        .market-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .market-detail-item {
-            background: #f8f9fa;
-            padding: 12px 15px;
-            border-radius: 8px;
-        }
-
-        .detail-label {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 5px;
-        }
-
-        .detail-value {
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        /* 运营中心 */
-        .operation-section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .operation-section .section-title {
-            text-align: left;
-            margin-bottom: 10px;
-        }
-
-        .section-subtitle {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .operation-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .operation-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .operation-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .operation-card h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .operation-card p {
-            font-size: 14px;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        /* 核心服务 */
-        .service-section {
-            background: #f8f9fa;
-            padding: 80px 20px;
-        }
-
-        .service-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .service-card {
+            padding: 2.5rem;
             background: white;
-            padding: 35px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: transparent;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
         }
 
         .service-card h3 {
-            font-size: 22px;
-            color: #1a56db;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e0e0e0;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .service-list {
-            list-style: none;
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.7;
         }
 
-        .service-list li {
-            padding: 10px 0;
-            padding-left: 25px;
-            position: relative;
-            color: #555;
-            font-size: 14px;
+        .stats {
+            background: var(--bg-light);
         }
 
-        .service-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #27ae60;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        /* 核心优势 */
-        .advantage-section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .advantage-grid {
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
         }
 
-        .advantage-card {
+        .stat-card {
             text-align: center;
-            padding: 25px 15px;
+            padding: 2rem;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
-        .advantage-card:hover {
-            transform: translateY(-5px);
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
         }
 
-        .advantage-icon {
-            font-size: 36px;
-            margin-bottom: 15px;
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
         }
 
-        .advantage-card h4 {
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 8px;
-            font-weight: 600;
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        .advantage-card p {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.5;
-        }
-
-        /* 视频模块 */
-        .video-section {
-            background: #f8f9fa;
-            padding: 80px 20px;
-        }
-
-        .video-container {
-            max-width: 1000px;
+        .news-list {
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            background: #000;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .news-item {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin-bottom: 1rem;
         }
 
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+        .news-item:last-child {
+            border-bottom: none;
         }
 
-        .video-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .video-placeholder-icon {
-            font-size: 80px;
-            margin-bottom: 20px;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .video-placeholder-icon:hover {
-            transform: scale(1.1);
-        }
-
-        .video-placeholder-text {
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        /* 愿景 */
-        .vision-section {
-            padding: 100px 20px;
-            text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .vision-section .section-title {
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        .vision-subtitle {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .vision-content {
-            max-width: 900px;
-            margin: 0 auto;
-            line-height: 2;
-            font-size: 16px;
-            opacity: 0.95;
-        }
-
-        /* 新闻 */
-        .news-section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .news-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-
-        .news-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .news-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-        }
-
-        .news-content {
-            padding: 25px;
+        .news-item:hover {
+            background: var(--bg-light);
+            transform: translateX(8px);
         }
 
         .news-date {
-            color: #666;
-            font-size: 13px;
-            margin-bottom: 10px;
-        }
-
-        .news-title {
-            font-size: 18px;
+            color: var(--primary-purple);
             font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
-            line-height: 1.4;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
         }
 
-        .news-summary {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.6;
+        .news-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
         }
 
-        /* 分页 */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 50px;
+        .news-item h3:hover {
+            color: var(--primary-purple);
         }
 
-        .pagination a {
-            width: 40px;
-            height: 40px;
+        .news-item p {
+            color: var(--text-light);
+        }
+
+        .video-section {
+            background: var(--bg-light);
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.8) 0%, rgba(59, 130, 246, 0.8) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            color: #333;
-            text-decoration: none;
-            transition: all 0.3s;
+            color: white;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        .pagination a:hover,
-        .pagination a.active {
-            background: #1a56db;
-            color: white;
-            border-color: #1a56db;
+        .play-button {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        /* 页脚 */
-        .footer {
-            background: #2c3e50;
+        .play-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 20px solid white;
+            margin-left: 4px;
+        }
+
+        footer {
+            background: var(--text-dark);
             color: white;
-            padding: 60px 20px 30px;
+            padding: 4rem 5% 2rem;
         }
 
         .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         .footer-logo {
             height: 40px;
-            width: auto;
+            margin-bottom: 1.5rem;
         }
 
-        .footer-brand-text {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .footer-description {
-            font-size: 14px;
-            line-height: 1.8;
-            opacity: 0.9;
+        .footer-about p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
         }
 
         .footer-links h4 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
         .footer-links ul {
             list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
+            color: #cbd5e1;
             text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: white;
+            color: var(--primary-blue);
         }
 
         .footer-bottom {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid #475569;
+            padding-top: 2rem;
             text-align: center;
-            font-size: 13px;
-            opacity: 0.8;
+            color: #94a3b8;
+            font-size: 0.9rem;
         }
 
-        /* 响应式 */
-        @media (max-width: 1024px) {
-            .operation-grid,
-            .service-grid,
-            .advantage-grid,
-            .news-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        html {
+            scroll-behavior: smooth;
         }
 
         @media (max-width: 768px) {
-            .navbar-nav {
+            .nav-links {
                 display: none;
             }
-
-            .hero-title {
-                font-size: 32px;
+            
+            .nav .cta-button {
+                display: none;
             }
-
-            .hero-subtitle {
-                font-size: 18px;
+            
+            .hamburger {
+                display: flex;
             }
-
-            .market-container,
-            .operation-grid,
-            .service-grid,
-            .advantage-grid,
-            .news-grid {
+            
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 6rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-cta {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                width: 100%;
+                height: 300px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
-            .footer-content {
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="navbar-content">
-            <a href="#" class="navbar-brand">
-                <img src="https://gwht.jscaee.cn/logo.png" alt="国文汇通" class="navbar-logo">
-                <span class="navbar-brand-text">国文汇通</span>
-            </a>
+    <div class="loader">
+        <div class="loader-circle"></div>
+    </div>
 
-            <ul class="navbar-nav">
-                <li><a href="#hero">首页</a></li>
-                <li><a href="#market">实时行情</a></li>
-                <li><a href="#operations">运营中心</a></li>
-                <li><a href="#services">核心服务</a></li>
-                <li><a href="#news">新闻资讯</a></li>
-            </ul>
+    <nav id="navbar">
+        <div class="logo">
+            <img src="assets/logo.png" alt="国文汇通 Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,#6366f1,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;>国文汇通</span>'">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#services">核心业务</a></li>
+            <li><a href="#stats">运营中心</a></li>
+            <li><a href="#news">新闻资讯</a></li>
+            <li><a href="#video">平台介绍</a></li>
+        </ul>
+        <a href="https://x.gwht.jscaee.cn" class="cta-button" target="_blank">立即下载</a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </nav>
 
-    <!-- Hero 区域 -->
-    <section id="hero" class="hero">
-        <img src="https://gwht.jscaee.cn/logo.png" alt="国文汇通" class="hero-logo">
-        <h1 class="hero-title">以文化为魂 · 以科技为器 · 以金融为力<br>让中华文化数字化、资产化、全球化</h1>
-        <p class="hero-subtitle">数字资产文化版权购物商城——国文汇通</p>
-        <a href="https://x.gwht.jscaee.cn" target="_blank" class="btn-download">立即下载国文汇通</a>
-    </section>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#services">核心业务</a></li>
+            <li><a href="#stats">运营中心</a></li>
+            <li><a href="#news">新闻资讯</a></li>
+            <li><a href="#video">平台介绍</a></li>
+        </ul>
+        <a href="https://x.gwht.jscaee.cn" class="cta-button" target="_blank" style="width: 100%; text-align: center;">立即下载</a>
+    </div>
 
-    <!-- 实时行情 -->
-    <section id="market" class="market-section">
-        <h2 class="section-title">实时行情</h2>
-        <div class="market-container">
-            <div class="market-card">
-                <div class="market-header">
-                    <h3 class="market-name">国文通卷</h3>
-                    <span class="market-badge">LIVE</span>
-                </div>
-                <div class="market-price" id="price-juan">¥128.50</div>
-                <div class="market-change positive" id="change-juan">+12.35%</div>
-                <div class="market-details">
-                    <div class="market-detail-item">
-                        <div class="detail-label">24H成交额</div>
-                        <div class="detail-value">¥8,520.6万</div>
-                    </div>
-                    <div class="market-detail-item">
-                        <div class="detail-label">24H成交量</div>
-                        <div class="detail-value">66.3万张</div>
-                    </div>
-                    <div class="market-detail-item">
-                        <div class="detail-label">市值</div>
-                        <div class="detail-value">¥128.5亿</div>
-                    </div>
-                    <div class="market-detail-item">
-                        <div class="detail-label">流通量</div>
-                        <div class="detail-value">1,000万张</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="market-card">
-                <div class="market-header">
-                    <h3 class="market-name">国文通宝</h3>
-                    <span class="market-badge">LIVE</span>
-                </div>
-                <div class="market-price" id="price-bao">¥1.25</div>
-                <div class="market-change positive" id="change-bao">+8.72%</div>
-                <div class="market-details">
-                    <div class="market-detail-item">
-                        <div class="detail-label">24H成交额</div>
-                        <div class="detail-value">¥1,256.8万</div>
-                    </div>
-                    <div class="market-detail-item">
-                        <div class="detail-label">24H成交量</div>
-                        <div class="detail-value">1,005万枚</div>
-                    </div>
-                    <div class="market-detail-item">
-                        <div class="detail-label">市值</div>
-                        <div class="detail-value">¥12.5亿</div>
-                    </div>
-                    <div class="market-detail-item">
-                        <div class="detail-label">流通量</div>
-                        <div class="detail-value">10亿枚</div>
-                    </div>
-                </div>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>数字资产文化版权平台</h1>
+            <p>以文化为魂·以科技为器·以金融为力，让中华文化数字化、资产化、全球化</p>
+            <div class="hero-cta">
+                <a href="https://x.gwht.jscaee.cn" class="cta-button" target="_blank">立即体验</a>
+                <a href="#services" class="secondary-button">了解更多</a>
             </div>
         </div>
+        <div class="hero-image"></div>
     </section>
 
-    <!-- 运营中心 -->
-    <section id="operations" class="operation-section">
-        <h2 class="section-title">运营中心展示</h2>
-        <p class="section-subtitle">OPERATION CENTER SHOWCASE</p>
-        <div class="operation-grid">
-            <div class="operation-card">
-                <h3>杭州运营中心</h3>
-                <p>负责华东地区业务拓展、用户服务与技术支持，致力于推动区域文化资产数字化进程</p>
-            </div>
-            <div class="operation-card">
-                <h3>深圳运营中心</h3>
-                <p>立足粤港澳大湾区，负责华南地区市场开发、合作对接与生态建设，打造国际化数字文创交易平台</p>
-            </div>
-            <div class="operation-card">
-                <h3>重庆运营中心</h3>
-                <p>服务西南地区，结合成渝双城经济圈战略，推动巴蜀文化与数字技术深度融合</p>
-            </div>
+    <section id="services">
+        <div class="section-title">
+            <h2>核心业务</h2>
+            <p>我们提供全方位的数字资产文化版权服务，赋能文化产业数字化转型</p>
         </div>
-    </section>
-
-    <!-- 核心服务 -->
-    <section id="services" class="service-section">
-        <h2 class="section-title">核心服务</h2>
-        <div class="service-grid">
+        <div class="services-grid">
             <div class="service-card">
-                <h3>文化资产确权与流通</h3>
-                <ul class="service-list">
-                    <li>文博资源上链</li>
-                    <li>非遗项目数字化</li>
-                    <li>艺术品与收藏品交易</li>
-                </ul>
+                <div class="service-icon">01</div>
+                <h3>数字藏品交易</h3>
+                <p>安全合规的数字藏品交易平台，支持多种文化数字资产的发行、购买、转让，为创作者和收藏家提供可靠的交易环境。</p>
             </div>
             <div class="service-card">
-                <h3>数字文旅与文化消费</h3>
-                <ul class="service-list">
-                    <li>文旅权益凭证化</li>
-                    <li>文化园区消费支付</li>
-                    <li>文创衍生品经济</li>
-                </ul>
+                <div class="service-icon">02</div>
+                <h3>文化产权交易</h3>
+                <p>规范的文化产权交易服务，涵盖著作权、商标权、专利权等各类文化产权的流转，促进文化资源的优化配置。</p>
             </div>
             <div class="service-card">
-                <h3>五大收益玩法</h3>
-                <ul class="service-list">
-                    <li>寄存收益</li>
-                    <li>国文打新</li>
-                    <li>交易与流通收益</li>
-                    <li>GameFi / StudyFi收益</li>
-                    <li>实体消费与权益映射</li>
-                </ul>
+                <div class="service-icon">03</div>
+                <h3>数字资产服务</h3>
+                <p>专业的数字资产存证、确权、评估服务，运用区块链技术保障数字资产的唯一性、真实性和不可篡改性。</p>
             </div>
         </div>
     </section>
 
-    <!-- 核心优势 -->
-    <section id="advantages" class="advantage-section">
-        <h2 class="section-title">核心竞争优势</h2>
-        <div class="advantage-grid">
-            <div class="advantage-card">
-                <div class="advantage-icon">🏛️</div>
-                <h4>国资背景<br>+ 合规牌照</h4>
-                <p>省级金融牌照</p>
+    <section class="stats" id="stats">
+        <div class="section-title">
+            <h2>运营中心</h2>
+            <p>平台稳定运营，服务百万用户，推动数字文化产业发展</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">100万+</div>
+                <div class="stat-label">注册用户</div>
             </div>
-            <div class="advantage-card">
-                <div class="advantage-icon">⛓️</div>
-                <h4>区块链确权<br>+ AI估值</h4>
-                <p>技术领先</p>
+            <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">合作IP方</div>
             </div>
-            <div class="advantage-card">
-                <div class="advantage-icon">🌐</div>
-                <h4>文化RWA<br>全生态</h4>
-                <p>国内首个</p>
+            <div class="stat-card">
+                <div class="stat-number">3000+</div>
+                <div class="stat-label">上线藏品</div>
             </div>
-            <div class="advantage-card">
-                <div class="advantage-icon">💎</div>
-                <h4>双资产模型<br>稳健可持续</h4>
-                <p>高粘性</p>
-            </div>
-            <div class="advantage-card">
-                <div class="advantage-icon">👥</div>
-                <h4>社群裂变<br>机制</h4>
-                <p>高收益</p>
+            <div class="stat-card">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">系统可用率</div>
             </div>
         </div>
     </section>
 
-    <!-- 视频模块 -->
-    <section id="video" class="video-section">
-        <h2 class="section-title">平台介绍视频</h2>
+    <section id="news">
+        <div class="section-title">
+            <h2>新闻资讯</h2>
+            <p>了解平台最新动态和行业前沿资讯</p>
+        </div>
+        <div class="news-list">
+            <div class="news-item">
+                <div class="news-date">2024-01-15</div>
+                <h3>国文汇通与多家文化机构达成战略合作</h3>
+                <p>平台与多家国家级文化机构签署战略合作协议，共同推动优秀传统文化的数字化转化和创新发展。</p>
+            </div>
+            <div class="news-item">
+                <div class="news-date">2024-01-08</div>
+                <h3>平台全新版本上线，优化交易体验</h3>
+                <p>V2.0版本正式发布，全面升级用户界面和交易系统，大幅提升操作流畅度和系统安全性。</p>
+            </div>
+            <div class="news-item">
+                <div class="news-date">2023-12-25</div>
+                <h3>数字文化产业发展论坛成功举办</h3>
+                <p>由我平台主办的数字文化产业发展论坛在京召开，行业专家共同探讨数字文化产业发展新机遇。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="video-section" id="video">
+        <div class="section-title">
+            <h2>平台介绍</h2>
+            <p>三分钟了解国文汇通平台生态与服务体系</p>
+        </div>
         <div class="video-container">
-            <div class="video-wrapper">
-                <div class="video-placeholder" id="video-placeholder">
-                    <div class="video-placeholder-icon">▶️</div>
-                    <div class="video-placeholder-text">点击观看国文汇通介绍视频</div>
-                </div>
+            <div class="video-placeholder">
+                <div class="play-button" id="playButton"></div>
+                <p>平台介绍视频</p>
             </div>
         </div>
     </section>
 
-    <!-- 愿景 -->
-    <section id="vision" class="vision-section">
-        <h2 class="section-title">汇聚文化之光 · 通达数字未来</h2>
-        <p class="vision-subtitle">GUOWEN HUITONG VISION</p>
-        <div class="vision-content">
-            成为中国领先的文化类数字资产基础设施平台；<br>
-            打造国家级文化数字化生态枢纽，让文化价值实现社会共享与国际传播；<br>
-            推动文化资产确权、交易、流通的全球标准化与国际互认；<br>
-            建设一个让文化、科技与金融共生共荣的数字文明新体系。<br><br>
-            国文汇通的愿景是：成为连接中华文化与世界的数字桥梁，<br>
-            让文化资产"确权有据、流通有序、价值可见"。
-        </div>
-    </section>
-
-    <!-- 新闻资讯 -->
-    <section id="news" class="news-section">
-        <h2 class="section-title">数字藏品平台资讯</h2>
-        <p class="section-subtitle">DIGITAL COLLECTION PLATFORM NEWS</p>
-        <div class="news-grid">
-            <div class="news-card" onclick="window.open('https://www.163.com/news/article/KN3C1FC500019UD6.html', '_blank')">
-                <div class="news-image">🎎</div>
-                <div class="news-content">
-                    <div class="news-date">2026-03-03</div>
-                    <h4 class="news-title">国文汇通联动泉州鲤城 以数字文创赋能马年文旅</h4>
-                    <p class="news-summary">携手福建省泉州市鲤城文投集团，以泉州马年生肖文化IP"六合同风马"为核心载体，打造线上线下深度融合的数字文创文旅盛宴。</p>
-                </div>
-            </div>
-            <div class="news-card" onclick="window.open('https://mtz.china.com/touzi/2026/0309/220845.html', '_blank')">
-                <div class="news-image">📊</div>
-                <div class="news-content">
-                    <div class="news-date">2026-03-09</div>
-                    <h4 class="news-title">国文汇通商业模式介绍</h4>
-                    <p class="news-summary">文化板块将是未来20年黄金赛道，以"大国崛起·东方潮玩"为核心理念，打造线上线下融合的文化旅游潮玩消费综合体。</p>
-                </div>
-            </div>
-            <div class="news-card" onclick="window.open('https://m.sohu.com/a/993188173_122618229/', '_blank')">
-                <div class="news-image">🚀</div>
-                <div class="news-content">
-                    <div class="news-date">2026-03-06</div>
-                    <h4 class="news-title">国资背景+合规布局 国文汇通引领数藏新行情</h4>
-                    <p class="news-summary">春节过后，数字藏品行业暗流涌动，国文汇通凭借国企背书、合规运营、全生态布局的硬核实力，成为市场资金的首选标的。</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 分页 -->
-        <div class="pagination">
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">»</a>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer class="footer">
+    <footer>
         <div class="footer-content">
-            <div class="footer-brand">
-                <img src="https://gwht.jscaee.cn/logo.png" alt="国文汇通" class="footer-logo">
-                <span class="footer-brand-text">国文汇通</span>
+            <div class="footer-about">
+                <div class="logo footer-logo">
+                    <img src="assets/logo.png" alt="国文汇通 Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=font-size:1.5rem;font-weight:700;color:white;>国文汇通</span>'">
+                </div>
+                <p>国文汇通是国内领先的数字资产文化版权购物商城，致力于通过技术创新推动中华文化的数字化、资产化、全球化发展。</p>
+                <p>官网：www.guowenhuitong.com</p>
             </div>
-            <div class="footer-description">
-                江苏省文交所旗下数字文创资产平台，以"大国崛起·东方潮玩"为核心理念，致力于推动文化资产数字化，让中华文化在数字化时代焕发新生。
-            </div>
-
             <div class="footer-links">
-                <h4>快速导航</h4>
+                <h4>业务中心</h4>
                 <ul>
-                    <li><a href="#hero">首页</a></li>
-                    <li><a href="#market">实时行情</a></li>
-                    <li><a href="#operations">运营中心</a></li>
-                    <li><a href="#services">核心服务</a></li>
+                    <li><a href="#services">数字藏品交易</a></li>
+                    <li><a href="#services">文化产权交易</a></li>
+                    <li><a href="#services">数字资产服务</a></li>
                 </ul>
             </div>
-
             <div class="footer-links">
                 <h4>关于我们</h4>
                 <ul>
-                    <li><a href="#">公司简介</a></li>
-                    <li><a href="#">公司动态</a></li>
+                    <li><a href="#home">平台介绍</a></li>
+                    <li><a href="#news">新闻动态</a></li>
                     <li><a href="#">联系我们</a></li>
                 </ul>
             </div>
-
             <div class="footer-links">
-                <h4>下载中心</h4>
+                <h4>法律合规</h4>
                 <ul>
-                    <li><a href="https://x.gwht.jscaee.cn" target="_blank">网页版</a></li>
-                    <li><a href="https://apps.apple.com/cn/app/id6760961605" target="_blank">iOS 版本</a></li>
-                    <li><a href="https://eopcos.x.gwht.jscaee.cn/gwht/apk/android.apk" target="_blank">Android 版本</a></li>
+                    <li><a href="#">用户协议</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">知识产权声明</a></li>
                 </ul>
             </div>
         </div>
-
         <div class="footer-bottom">
-            © 2026 江苏文交所-国文汇通 All Rights Reserved | 江苏省文化投资管理集团控股 | 黔ICP备2026003633号-1
+            <p>© 2024 国文汇通 版权所有 | 合规经营 健康发展</p>
         </div>
     </footer>
 
     <script>
-        // 导航栏滚动效果
-        const navbar = document.querySelector('.navbar');
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loader');
+            loader.classList.add('hidden');
+        });
+
+        const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+                navbar.classList.add('scrolled');
             } else {
-                navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+                navbar.classList.remove('scrolled');
             }
         });
 
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
             });
         });
 
-        // 实时行情数据更新
-        function updateMarketData() {
-            const updatePrice = (id, basePrice) => {
-                const element = document.getElementById(id);
-                const changeElement = document.getElementById(id.replace('price', 'change'));
-                if (element && changeElement) {
-                    const currentPrice = parseFloat(element.textContent.replace('¥', ''));
-                    const change = (Math.random() - 0.5) * 0.01;
-                    const newPrice = currentPrice * (1 + change);
+        const playButton = document.getElementById('playButton');
+        playButton.addEventListener('click', () => {
+            alert('平台介绍视频正在加载中，敬请期待');
+        });
 
-                    element.textContent = '¥' + newPrice.toFixed(2);
-
-                    const currentChange = parseFloat(changeElement.textContent.replace('%', ''));
-                    const newChange = currentChange + (change * 100);
-                    const isPositive = newChange >= 0;
-
-                    changeElement.textContent = (isPositive ? '+' : '') + newChange.toFixed(2) + '%';
-                    changeElement.className = 'market-change ' + (isPositive ? 'positive' : 'negative');
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
                 }
-            };
-
-            updatePrice('price-juan', 128.50);
-            updatePrice('price-bao', 1.25);
-        }
-
-        // 每3秒更新一次
-        setInterval(updateMarketData, 3000);
-
-        // 视频播放
-        const videoPlaceholder = document.getElementById('video-placeholder');
-        if (videoPlaceholder) {
-            videoPlaceholder.addEventListener('click', function() {
-                const videoWrapper = this.parentElement;
-                videoWrapper.innerHTML = '<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
             });
-        }
+        }, { threshold: 0.1 });
+
+        statNumbers.forEach(num => {
+            observer.observe(num);
+        });
+
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            </style>
+        `);
     </script>
 </body>
 </html>
