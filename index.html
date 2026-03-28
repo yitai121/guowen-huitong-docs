@@ -834,25 +834,64 @@
     </footer>
 
     <script>
-        // 加载动画
-        window.addEventListener('load', () => {
+        // 加载动画修复
+        (function() {
             const loader = document.getElementById('loader');
             const progressFill = document.getElementById('progressFill');
             
-            // 模拟加载进度
+            if (!loader || !progressFill) {
+                console.error('加载动画元素未找到');
+                return;
+            }
+
             let progress = 0;
+            let loaderHidden = false;
+
+            // 隐藏加载动画的函数
+            function hideLoader() {
+                if (loaderHidden) return;
+                loaderHidden = true;
+                progress = 100;
+                progressFill.style.width = '100%';
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    loader.style.visibility = 'hidden';
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+
+            // 模拟加载进度
             const interval = setInterval(() => {
+                if (loaderHidden) {
+                    clearInterval(interval);
+                    return;
+                }
                 progress += Math.random() * 15;
                 if (progress >= 100) {
                     progress = 100;
                     clearInterval(interval);
-                    setTimeout(() => {
-                        loader.classList.add('hidden');
-                    }, 300);
                 }
                 progressFill.style.width = progress + '%';
             }, 100);
-        });
+
+            // 方法1: 使用 DOMContentLoaded（更快）
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log('DOM 加载完成');
+                setTimeout(hideLoader, 1000);
+            });
+
+            // 方法2: 超时保护（5秒后强制隐藏）
+            setTimeout(() => {
+                console.log('超时保护触发');
+                hideLoader();
+            }, 5000);
+
+            // 方法3: window load 作为备用
+            window.addEventListener('load', () => {
+                console.log('Window 加载完成');
+                hideLoader();
+            });
+        })();
 
         // 创建粒子效果
         const particlesContainer = document.getElementById('particles');
