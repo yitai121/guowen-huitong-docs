@@ -1,0 +1,13 @@
+{
+  "url": "https://www.guowenhuitong.com",
+  "total_classes": 525,
+  "animated_elements": 0,
+  "styled_elements": 228,
+  "main_containers": 1,
+  "key_findings": [
+    "网站使用大量 CSS 类名实现样式和动画",
+    "可能有内联样式覆盖默认行为",
+    "动画效果通过 CSS 类名控制",
+    "需要进一步分析 CSS 文件获取完整样式"
+  ]
+}
