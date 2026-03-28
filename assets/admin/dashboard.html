@@ -2,600 +2,820 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: http:; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none';">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta name="robots" content="noindex, nofollow">
-    <title>管理后台 - 国文汇通</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%236366f1'/><stop offset='100%' style='stop-color:%23a855f7'/></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23grad)'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='white'>⚙️</text></svg>">
+    <title>仪表板 - 国文汇通管理后台</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%236366f1'/><stop offset='100%' style='stop-color:%23ec4899'/></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23grad)'/><text x='50' y='70' font-size='50' text-anchor='middle' fill='white'>📊</text></svg>">
     <style>
+        /* ==================== 全局变量 ==================== */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
+            --secondary: #a855f7;
+            --accent: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --lighter: #ffffff;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --glass-bg: rgba(15, 23, 42, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-blur: 20px;
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.4);
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --transition-base: 300ms ease;
+        }
+
+        /* ==================== 全局重置 ==================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #6366f1;
-            --primary-light: #818cf8;
-            --secondary: #a855f7;
-            --accent: #ec4899;
-            --success: #10b981;
-            --danger: #ef4444;
-            --warning: #f59e0b;
-            --dark: #0f172a;
-            --darker: #020617;
-            --light: #f8fafc;
-            --glass-bg: rgba(15, 23, 42, 0.8);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.3);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                        "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB",
+                        "Microsoft YaHei", sans-serif;
             background: var(--darker);
-            color: var(--light);
-            min-height: 100vh;
+            color: var(--lighter);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
-        /* 动态背景 */
-        .dynamic-bg {
+        /* ==================== 布局 ==================== */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ==================== 侧边栏 ==================== */
+        .sidebar {
+            width: 260px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-right: 1px solid var(--glass-border);
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .gradient-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.3;
-            animation: float 30s infinite ease-in-out;
-        }
-
-        .orb-1 {
-            width: 600px;
-            height: 600px;
-            background: var(--primary);
-            top: -200px;
-            right: -200px;
-        }
-
-        .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: var(--secondary);
-            bottom: -150px;
-            left: -150px;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(50px, -50px) scale(1.1); }
-        }
-
-        /* 主容器 */
-        .app-container {
-            position: relative;
-            z-index: 10;
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: 0 30px;
-        }
-
-        /* 导航栏 */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            position: sticky;
-            top: 0;
+            bottom: 0;
             z-index: 100;
-            background: rgba(2, 6, 23, 0.8);
+            transition: transform var(--transition-base);
         }
 
-        .logo {
+        .sidebar-logo {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 22px;
+            gap: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            background: var(--gradient);
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            background: var(--gradient);
-            border-radius: 12px;
+        .sidebar-logo-icon {
+            font-size: 1.75rem;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 1;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1rem;
+            border-radius: var(--radius-lg);
+            color: var(--gray-400);
+            text-decoration: none;
+            transition: all var(--transition-base);
+        }
+
+        .nav-link:hover {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--lighter);
+        }
+
+        .nav-link.active {
+            background: var(--primary-gradient);
+            color: var(--lighter);
+        }
+
+        .nav-link-icon {
+            font-size: 1.25rem;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* ==================== 主内容区 ==================== */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        /* ==================== 顶部导航栏 ==================== */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+        }
+
+        .top-nav-left h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .top-nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            box-shadow: var(--shadow-glow);
+            font-size: 1.25rem;
         }
 
-        .nav-actions {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        /* 按钮样式 */
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 12px;
-            font-size: 14px;
+        .user-name {
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        }
+
+        .logout-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: var(--radius-lg);
+            color: var(--danger);
             text-decoration: none;
-            font-family: inherit;
+            font-size: 0.875rem;
+            transition: all var(--transition-base);
         }
 
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        .logout-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 60px rgba(99, 102, 241, 0.5);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--light);
-            border: 1px solid var(--glass-border);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .btn-danger {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-        }
-
-        .btn-danger:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 40px rgba(239, 68, 68, 0.4);
-        }
-
-        /* 统计卡片 */
+        /* ==================== 统计卡片 ==================== */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin: 40px 0;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .stat-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 28px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .stat-card:hover::before {
-            transform: scaleX(1);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            transition: all var(--transition-base);
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), var(--shadow-glow);
+            box-shadow: var(--shadow-glow);
+            border-color: rgba(99, 102, 241, 0.3);
         }
 
         .stat-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 16px;
+            align-items: center;
+            margin-bottom: 1rem;
         }
 
         .stat-icon {
             width: 50px;
             height: 50px;
-            background: var(--gradient);
-            border-radius: 14px;
+            border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 1.5rem;
         }
 
-        .stat-value {
-            font-size: 36px;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 4px;
+        .stat-icon.primary {
+            background: rgba(99, 102, 241, 0.1);
         }
 
-        .stat-label {
-            font-size: 14px;
-            color: var(--light);
-            opacity: 0.7;
-            font-weight: 500;
+        .stat-icon.success {
+            background: rgba(16, 185, 129, 0.1);
         }
 
-        .stat-change {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 13px;
-            margin-top: 12px;
+        .stat-icon.warning {
+            background: rgba(245, 158, 11, 0.1);
         }
 
-        .stat-change.up {
+        .stat-icon.danger {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .stat-trend {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .stat-trend.up {
             color: var(--success);
         }
 
-        .stat-change.down {
+        .stat-trend.down {
             color: var(--danger);
         }
 
-        /* 内容区域 */
-        .content-section {
-            margin: 40px 0;
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray-400);
+            font-size: 0.875rem;
+        }
+
+        /* ==================== 图表容器 ==================== */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .chart-canvas {
+            width: 100%;
+            height: 300px;
+        }
+
+        /* ==================== 文档列表 ==================== */
+        .documents-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 1.5rem;
         }
 
         .section-title {
-            font-size: 24px;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 1.125rem;
+            font-weight: 600;
         }
 
-        /* 数据表格 */
-        .table-container {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            overflow: hidden;
+        .btn {
+            padding: 0.625rem 1.25rem;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all var(--transition-base);
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .data-table {
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: var(--lighter);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .documents-table {
             width: 100%;
             border-collapse: collapse;
         }
 
-        .data-table th,
-        .data-table td {
-            padding: 18px 24px;
+        .documents-table th,
+        .documents-table td {
+            padding: 1rem;
             text-align: left;
             border-bottom: 1px solid var(--glass-border);
         }
 
-        .data-table th {
+        .documents-table th {
+            color: var(--gray-400);
             font-weight: 600;
-            font-size: 14px;
-            color: var(--light);
-            opacity: 0.7;
-            background: rgba(99, 102, 241, 0.05);
+            font-size: 0.875rem;
         }
 
-        .data-table tr:hover {
-            background: rgba(99, 102, 241, 0.03);
+        .documents-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
         }
 
-        .data-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
+        .doc-type {
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-lg);
+            font-size: 0.75rem;
             font-weight: 600;
         }
 
-        .status-active {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--success);
-        }
-
-        .status-inactive {
-            background: rgba(239, 68, 68, 0.15);
+        .doc-type.pdf {
+            background: rgba(239, 68, 68, 0.1);
             color: var(--danger);
         }
 
-        /* 操作按钮组 */
-        .action-buttons {
-            display: flex;
-            gap: 8px;
+        .doc-type.doc {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
         }
 
-        .action-btn {
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--light);
+        .doc-type.xls {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
         }
 
-        .action-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-1px);
-        }
-
-        /* 响应式 */
+        /* ==================== 响应式设计 ==================== */
         @media (max-width: 1024px) {
-            .navbar {
-                flex-direction: column;
-                gap: 16px;
-                padding: 16px 0;
+            .sidebar {
+                transform: translateX(-100%);
             }
 
-            .nav-actions {
-                width: 100%;
-                justify-content: center;
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+
+            .top-nav {
+                flex-direction: column;
+                gap: 1rem;
             }
 
             .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                grid-template-columns: 1fr;
             }
+        }
 
-            .data-table {
-                font-size: 14px;
-            }
+        /* ==================== 加载动画 ==================== */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray-400);
+        }
 
-            .data-table th,
-            .data-table td {
-                padding: 14px 16px;
-            }
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--glass-border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <!-- 动态背景 -->
-    <div class="dynamic-bg">
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-    </div>
-
-    <!-- 主容器 -->
-    <div class="app-container">
-        <!-- 导航栏 -->
-        <nav class="navbar">
-            <div class="logo">
-                <div class="logo-icon">⚙️</div>
-                <span>管理后台</span>
+    <div class="dashboard">
+        <!-- 侧边栏 -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <span class="sidebar-logo-icon">📚</span>
+                <span>国文汇通</span>
             </div>
-            <div class="nav-actions">
-                <a href="/index.html" class="btn btn-secondary">← 返回首页</a>
-                <a href="/admin/login.html" class="btn btn-danger" onclick="sessionStorage.removeItem('adminSession')">🚪 退出登录</a>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-link active">
+                    <span class="nav-link-icon">📊</span>
+                    <span>仪表板</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="nav-link-icon">📁</span>
+                    <span>文档管理</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="nav-link-icon">👥</span>
+                    <span>用户管理</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="nav-link-icon">📈</span>
+                    <span>数据分析</span>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="nav-link-icon">⚙️</span>
+                    <span>系统设置</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-link">
+                    <span class="nav-link-icon">📖</span>
+                    <span>帮助文档</span>
+                </a>
             </div>
-        </nav>
+        </aside>
 
-        <!-- 统计卡片 -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-header">
-                    <div>
-                        <div class="stat-value">1,000+</div>
-                        <div class="stat-label">总文档数</div>
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航栏 -->
+            <div class="top-nav">
+                <div class="top-nav-left">
+                    <h1>仪表板</h1>
+                </div>
+                <div class="top-nav-right">
+                    <div class="user-info">
+                        <div class="user-avatar">👤</div>
+                        <div class="user-name">管理员</div>
                     </div>
-                    <div class="stat-icon">📄</div>
-                </div>
-                <div class="stat-change up">
-                    <span>↑</span>
-                    <span>12% 较上月</span>
+                    <a href="/admin.html" class="logout-btn">退出登录</a>
                 </div>
             </div>
 
-            <div class="stat-card">
-                <div class="stat-header">
-                    <div>
-                        <div class="stat-value">50K+</div>
-                        <div class="stat-label">活跃用户</div>
+            <!-- 统计卡片 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon primary">📁</div>
+                        <div class="stat-trend up">↑ 12%</div>
                     </div>
-                    <div class="stat-icon">👥</div>
+                    <div class="stat-value">1,234</div>
+                    <div class="stat-label">总文档数</div>
                 </div>
-                <div class="stat-change up">
-                    <span>↑</span>
-                    <span>8% 较上月</span>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-header">
-                    <div>
-                        <div class="stat-value">1M+</div>
-                        <div class="stat-label">下载次数</div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon success">👥</div>
+                        <div class="stat-trend up">↑ 8%</div>
                     </div>
-                    <div class="stat-icon">⬇️</div>
+                    <div class="stat-value">567</div>
+                    <div class="stat-label">活跃用户</div>
                 </div>
-                <div class="stat-change up">
-                    <span>↑</span>
-                    <span>15% 较上月</span>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-header">
-                    <div>
-                        <div class="stat-value">98%</div>
-                        <div class="stat-label">系统健康度</div>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon warning">📊</div>
+                        <div class="stat-trend down">↓ 3%</div>
                     </div>
-                    <div class="stat-icon">✅</div>
+                    <div class="stat-value">8,901</div>
+                    <div class="stat-label">今日访问</div>
                 </div>
-                <div class="stat-change up">
-                    <span>↑</span>
-                    <span>2% 较上月</span>
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon danger">💾</div>
+                        <div class="stat-trend up">↑ 15%</div>
+                    </div>
+                    <div class="stat-value">45.6</div>
+                    <div class="stat-label">存储容量 (GB)</div>
                 </div>
             </div>
-        </div>
 
-        <!-- 文档管理 -->
-        <div class="content-section">
-            <div class="section-header">
-                <h2 class="section-title">文档管理</h2>
-                <button class="btn btn-primary" onclick="alert('上传功能开发中')">📤 上传新文档</button>
+            <!-- 图表区域 -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">访问趋势</h3>
+                    </div>
+                    <canvas id="lineChart" class="chart-canvas"></canvas>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">文档类型分布</h3>
+                    </div>
+                    <canvas id="pieChart" class="chart-canvas"></canvas>
+                </div>
             </div>
 
-            <div class="table-container">
-                <table class="data-table">
+            <!-- 文档列表 -->
+            <div class="documents-section">
+                <div class="section-header">
+                    <h3 class="section-title">最近文档</h3>
+                    <button class="btn btn-primary">
+                        <span>+</span>
+                        <span>上传文档</span>
+                    </button>
+                </div>
+                <table class="documents-table">
                     <thead>
                         <tr>
                             <th>文档名称</th>
-                            <th>分类</th>
-                            <th>下载量</th>
-                            <th>状态</th>
-                            <th>更新时间</th>
+                            <th>类型</th>
+                            <th>大小</th>
+                            <th>上传时间</th>
                             <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>企业知识管理白皮书</td>
-                            <td>产品白皮书</td>
-                            <td>50K+</td>
-                            <td><span class="status-badge status-active">已发布</span></td>
-                            <td>2024-03-26</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn">编辑</button>
-                                    <button class="action-btn">下架</button>
-                                </div>
-                            </td>
+                            <td>企业知识库管理制度.pdf</td>
+                            <td><span class="doc-type pdf">PDF</span></td>
+                            <td>2.5 MB</td>
+                            <td>2024-01-15 10:30</td>
+                            <td><a href="#" style="color: var(--primary-light);">查看</a></td>
                         </tr>
                         <tr>
-                            <td>技术架构设计指南</td>
-                            <td>技术文档</td>
-                            <td>35K+</td>
-                            <td><span class="status-badge status-active">已发布</span></td>
-                            <td>2024-03-25</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn">编辑</button>
-                                    <button class="action-btn">下架</button>
-                                </div>
-                            </td>
+                            <td>产品手册 v2.0.docx</td>
+                            <td><span class="doc-type doc">DOC</span></td>
+                            <td>1.8 MB</td>
+                            <td>2024-01-14 15:45</td>
+                            <td><a href="#" style="color: var(--primary-light);">查看</a></td>
                         </tr>
                         <tr>
-                            <td>用户操作手册</td>
-                            <td>用户手册</td>
-                            <td>80K+</td>
-                            <td><span class="status-badge status-active">已发布</span></td>
-                            <td>2024-03-24</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn">编辑</button>
-                                    <button class="action-btn">下架</button>
-                                </div>
-                            </td>
+                            <td>年度销售报告.xlsx</td>
+                            <td><span class="doc-type xls">XLS</span></td>
+                            <td>3.2 MB</td>
+                            <td>2024-01-13 09:20</td>
+                            <td><a href="#" style="color: var(--primary-light);">查看</a></td>
                         </tr>
                         <tr>
-                            <td>API 开发者文档</td>
-                            <td>API文档</td>
-                            <td>25K+</td>
-                            <td><span class="status-badge status-active">已发布</span></td>
-                            <td>2024-03-23</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn">编辑</button>
-                                    <button class="action-btn">下架</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>安全合规指南</td>
-                            <td>安全文档</td>
-                            <td>40K+</td>
-                            <td><span class="status-badge status-inactive">草稿</span></td>
-                            <td>2024-03-22</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="action-btn">编辑</button>
-                                    <button class="action-btn">发布</button>
-                                </div>
-                            </td>
+                            <td>技术架构设计图.pdf</td>
+                            <td><span class="doc-type pdf">PDF</span></td>
+                            <td>5.1 MB</td>
+                            <td>2024-01-12 14:10</td>
+                            <td><a href="#" style="color: var(--primary-light);">查看</a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
+        </main>
     </div>
 
+    <script src="../js/security-config.js"></script>
     <script>
-        // 验证会话
-        function verifySession() {
-            const sessionData = sessionStorage.getItem('adminSession');
-            if (!sessionData) {
-                window.location.href = '/admin/login.html';
-                return false;
-            }
-            return true;
+        // ==================== 会话验证 ====================
+        const session = sessionStorage.getItem('adminSession') || localStorage.getItem('adminSession');
+        if (!session) {
+            window.location.href = '/admin.html';
         }
 
-        // 页面加载
-        window.onload = function() {
-            if (!verifySession()) {
-                return;
+        // ==================== 侧边栏切换（移动端） ====================
+        const sidebar = document.getElementById('sidebar');
+        let sidebarOpen = false;
+
+        // 添加移动端菜单按钮（需要时启用）
+        // document.querySelector('.top-nav').insertAdjacentHTML('afterbegin', '<button class="mobile-menu-btn">☰</button>');
+
+        // ==================== 绘制折线图 ====================
+        function drawLineChart(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+
+            // 设置画布尺寸
+            canvas.width = canvas.offsetWidth * 2;
+            canvas.height = canvas.offsetHeight * 2;
+            ctx.scale(2, 2);
+
+            const width = canvas.offsetWidth;
+            const height = canvas.offsetHeight;
+            const padding = 40;
+
+            // 数据
+            const data = [120, 190, 150, 220, 180, 250, 280];
+            const labels = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+
+            // 计算比例
+            const maxValue = Math.max(...data);
+            const minValue = Math.min(...data);
+            const xStep = (width - padding * 2) / (data.length - 1);
+            const yScale = (height - padding * 2) / (maxValue - minValue);
+
+            // 绘制网格
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + (height - padding * 2) * (i / 5);
+                ctx.beginPath();
+                ctx.moveTo(padding, y);
+                ctx.lineTo(width - padding, y);
+                ctx.stroke();
             }
-        };
+
+            // 绘制折线
+            ctx.beginPath();
+            ctx.strokeStyle = '#6366f1';
+            ctx.lineWidth = 3;
+            data.forEach((value, index) => {
+                const x = padding + index * xStep;
+                const y = height - padding - (value - minValue) * yScale;
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            ctx.stroke();
+
+            // 绘制渐变填充
+            const gradient = ctx.createLinearGradient(0, 0, 0, height);
+            gradient.addColorStop(0, 'rgba(99, 102, 241, 0.3)');
+            gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+            ctx.fillStyle = gradient;
+            ctx.lineTo(padding + (data.length - 1) * xStep, height - padding);
+            ctx.lineTo(padding, height - padding);
+            ctx.closePath();
+            ctx.fill();
+
+            // 绘制数据点
+            data.forEach((value, index) => {
+                const x = padding + index * xStep;
+                const y = height - padding - (value - minValue) * yScale;
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, Math.PI * 2);
+                ctx.fillStyle = '#6366f1';
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(x, y, 8, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(99, 102, 241, 0.3)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            });
+
+            // 绘制标签
+            ctx.fillStyle = '#9ca3af';
+            ctx.font = '12px sans-serif';
+            ctx.textAlign = 'center';
+            labels.forEach((label, index) => {
+                const x = padding + index * xStep;
+                ctx.fillText(label, x, height - 10);
+            });
+        }
+
+        // ==================== 绘制饼图 ====================
+        function drawPieChart(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+
+            // 设置画布尺寸
+            canvas.width = canvas.offsetWidth * 2;
+            canvas.height = canvas.offsetHeight * 2;
+            ctx.scale(2, 2);
+
+            const width = canvas.offsetWidth;
+            const height = canvas.offsetHeight;
+            const centerX = width / 2;
+            const centerY = height / 2;
+            const radius = Math.min(width, height) / 2 - 40;
+
+            // 数据
+            const data = [
+                { label: 'PDF', value: 45, color: '#ef4444' },
+                { label: 'DOC', value: 30, color: '#3b82f6' },
+                { label: 'XLS', value: 15, color: '#10b981' },
+                { label: '其他', value: 10, color: '#f59e0b' }
+            ];
+
+            const total = data.reduce((sum, item) => sum + item.value, 0);
+            let startAngle = -Math.PI / 2;
+
+            // 绘制饼图
+            data.forEach(item => {
+                const sliceAngle = (item.value / total) * Math.PI * 2;
+
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
+                ctx.closePath();
+                ctx.fillStyle = item.color;
+                ctx.fill();
+
+                // 绘制标签
+                const labelAngle = startAngle + sliceAngle / 2;
+                const labelX = centerX + Math.cos(labelAngle) * (radius * 0.7);
+                const labelY = centerY + Math.sin(labelAngle) * (radius * 0.7);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 14px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(`${item.value}%`, labelX, labelY);
+
+                startAngle += sliceAngle;
+            });
+
+            // 绘制中心圆（创建环形图效果）
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius * 0.4, 0, Math.PI * 2);
+            ctx.fillStyle = '#0f172a';
+            ctx.fill();
+        }
+
+        // ==================== 初始化图表 ====================
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                drawLineChart('lineChart');
+                drawPieChart('pieChart');
+            }, 100);
+        });
+
+        // 窗口大小改变时重绘图表
+        window.addEventListener('resize', () => {
+            drawLineChart('lineChart');
+            drawPieChart('pieChart');
+        });
+
+        console.log('📊 国文汇通 - 管理仪表板');
+        console.log('Version 2.0 - Ultra Edition');
     </script>
 </body>
 </html>
