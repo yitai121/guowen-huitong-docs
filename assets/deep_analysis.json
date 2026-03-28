@@ -1,0 +1,100 @@
+{
+  "url": "https://www.guowenhuitong.com",
+  "title": "首页",
+  "nav_menus": [
+    {
+      "text": "首页Home",
+      "href": "https://www.guowenhuitong.com/"
+    },
+    {
+      "text": "关于我们Nav",
+      "href": "https://www.guowenhuitong.com/h-col-101.html"
+    },
+    {
+      "text": "公司动态Nav",
+      "href": "https://www.guowenhuitong.com/h-col-105.html"
+    },
+    {
+      "text": "前沿数藏资讯Nav",
+      "href": "https://www.guowenhuitong.com/h-col-104.html"
+    },
+    {
+      "text": "联系我们Nav",
+      "href": "https://www.guowenhuitong.com/h-col-102.html"
+    }
+  ],
+  "hero_section": [
+    {
+      "tag": "div",
+      "class": [
+        "webTopTable"
+      ],
+      "text": "国文汇通"
+    }
+  ],
+  "images": [
+    {
+      "url": "https://34039069.s21i.faiusr.com/4/ABUIABAEGAAg7NmIzgYo24eHsQIwqAU4qAU.png",
+      "alt": "国文汇通logo",
+      "width": "77",
+      "height": "73"
+    }
+  ],
+  "total_images": 1,
+  "videos": [],
+  "total_videos": 0,
+  "sections": [],
+  "unique_classes": [
+    "J_bannerItem",
+    "J_bgMusic",
+    "J_containerFormsCenterMiddle",
+    "J_defImage",
+    "J_floatBtnBox",
+    "J_floatBtnText",
+    "J_floatImg_jump",
+    "J_footerSep",
+    "J_fullmeasurePackContent",
+    "J_fullmeasurePageShow",
+    "J_img_lazyLoad",
+    "J_moduleZone",
+    "J_nav_item_arrow",
+    "J_nav_item_link",
+    "J_nav_item_name",
+    "J_nav_item_subname",
+    "J_packContent",
+    "J_supportItem",
+    "J_tabItemContextMenuTrigger",
+    "J_tabPackContent",
+    "J_webBannerTable",
+    "J_webFooterTable",
+    "J_webHeaderTable",
+    "J_webHeaderTd",
+    "J_zoneContentBg",
+    "J_zoneEnableAll",
+    "__noGmain",
+    "absBottomTable",
+    "absForms",
+    "absMiddleTable",
+    "absTopTable",
+    "animateModule",
+    "article_title",
+    "auxiliaryTitle",
+    "auxiliaryTitle377",
+    "bUserWrap",
+    "banner",
+    "bannerCenter",
+    "bannerLeft",
+    "bannerNormalTitle",
+    "bannerRight",
+    "bannerTable",
+    "bannerTextInnerWrap",
+    "bannerTextOutWrap",
+    "bannerTop",
+    "bgMusic",
+    "bgPlay_after",
+    "bgPlay_before",
+    "bgPlay_inner",
+    "bgPlay_text_container"
+  ],
+  "color_schemes": []
+}
